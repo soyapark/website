@@ -14,6 +14,16 @@
 	"poster": [
 		{
 			"title": "Post-literate Programming: Linking Discussion and Code in Software Development Teams",
+			"link": [
+				{
+					"name": "PDF",
+					"link": "papers/post-literate-poster.pdf"
+				},
+				{
+					"name": "ACM DL",
+					"link": "https://dl.acm.org/citation.cfm?id=3266098"
+				}
+			],
 			"author": [
 				{
 					"name": "Soya Park",
