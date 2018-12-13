@@ -2,14 +2,32 @@
 	"paper": [
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study (to appear)",
-			"author": "Soya Park",
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				}
+			],
 			"conference": "CHI '19"
 		}
 	],
 	"poster": [
 		{
 			"title": "Post-literate Programming: Linking Discussion and Code in Software Development Teams",
-			"author": "Soya Park",
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "Amy X. Zhang",
+					"link":	"http://people.csail.mit.edu/axz/"
+				},
+				{
+					"name": "David R. Karger",
+					"link":	"http://people.csail.mit.edu/karger/"
+				}
+			],
 			"conference": "UIST '18"
 		}
 	]
