@@ -1,0 +1,56 @@
+{
+	"paper": [
+		{
+			"title": "Opportunities for Automating Email Processing: A Need-Finding Study (to appear)",
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "Amy X. Zhang",
+					"link":	"http://people.csail.mit.edu/axz/"
+				},
+				{
+					"name": "Luke Murray",
+					"link":	""
+				},
+				{
+					"name": "David R. Karger",
+					"link":	"http://people.csail.mit.edu/karger/"
+				}
+			],
+			"conference": "CHI '19"
+		}
+	],
+	"poster": [
+		{
+			"title": "Post-literate Programming: Linking Discussion and Code in Software Development Teams",
+			"link": [
+				{
+					"name": "PDF",
+					"link": "papers/post-literate-programming.pdf"
+				},
+				{
+					"name": "ACM DL",
+					"link": "https://dl.acm.org/citation.cfm?id=3266098"
+				}
+			],
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "Amy X. Zhang",
+					"link":	"http://people.csail.mit.edu/axz/"
+				},
+				{
+					"name": "David R. Karger",
+					"link":	"http://people.csail.mit.edu/karger/"
+				}
+			],
+			"conference": "UIST '18"
+		}
+	]
+}
