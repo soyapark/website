@@ -6,6 +6,18 @@
 				{
 					"name": "Soya Park",
 					"link":	""
+				},
+				{
+					"name": "Amy X. Zhang",
+					"link":	"http://people.csail.mit.edu/axz/"
+				},
+				{
+					"name": "Luke Murray",
+					"link":	""
+				},
+				{
+					"name": "David R. Karger",
+					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
 			"conference": "CHI '19"
