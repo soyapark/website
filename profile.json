@@ -28,11 +28,11 @@
 			"title": "Post-literate Programming: Linking Discussion and Code in Software Development Teams",
 			"link": [
 				{
-					"name": "PDF",
+					"name": "pdf",
 					"link": "papers/post-literate-programming.pdf"
 				},
 				{
-					"name": "ACM DL",
+					"name": "acm dl",
 					"link": "https://dl.acm.org/citation.cfm?id=3266098"
 				}
 			],
