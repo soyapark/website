@@ -19,6 +19,11 @@
 font-family: 'Noto Serif', serif;
     }
 
+    a {
+    	color: skyblue;
+		cursor: pointer;
+    }
+
     .conference {
     	margin-left: 30;
     }
@@ -30,7 +35,64 @@ font-family: 'Noto Serif', serif;
     .ellen-container img {
     	height: 200;
     }
+
 </style>
+
+<script>
+	(function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-131048336-1', 'auto');
+        ga('send', 'pageview');
+  // window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
+
+  // gtag('config', 'UA-131048336-1');
+
+  function test() {
+  	var _this=this;gtag(['_set','hitCallback',function(){document.location=_this.href;}]);gtag(['_trackEvent','outbound','click',_this.href]);alert('here!');return false;
+  }
+
+  var trackOutboundLink = function(url, inCategory, src_element) {
+  	debugger;
+  	if (ga.hasOwnProperty('loaded') && ga.loaded === true) {
+ 
+	    //Success, ga is loaded
+	 
+	    ga('send', 'event', {
+	        'eventCategory' : inCategory,
+	        'eventAction' : url,
+	        'eventLabel' : url,
+	        'eventValue' : 1,
+	        'hitCallback' : function () {
+	        	debugger;
+	            document.location = url;
+	        },
+		    'hitCallbackFail' : function () {
+		        
+		    }
+	    });
+	 
+	} else {
+	 
+	    //Not loaded, continue without tracking the data
+	    document.location = url;
+	 
+	}
+
+}
+</script>
+
+
 
 </head>
 
@@ -38,7 +100,7 @@ font-family: 'Noto Serif', serif;
 	<h1> Soya Park </h1>
 
 	<p>
-	I am a <a title="first-year Ph.D. student">Ph.D. student</a> at MIT CSAIL. My advisor is <a href="http://people.csail.mit.edu/karger/">David R. Karger</a>.
+	I am a <a title="first-year Ph.D. student" style="color:black;cursor:auto;">Ph.D. student</a> at MIT CSAIL. My advisor is <a onclick="trackOutboundLink('http://people.csail.mit.edu/karger/','link '+ ' karger', this);return false;">David R. Karger</a>.
 	<br>I study online collaboration and build systems helping people their work done.   
 	</p>
 	[my first name]@mit.edu<br/>
@@ -61,10 +123,11 @@ font-family: 'Noto Serif', serif;
 
 	<h2> Posters </h2>
 
+
 	<div property='poster'>
 		<i>[title]</i>
 		<div property='link' mv-multiple style="display:inline;">
-			<a href=[link]>[name]</a>,
+			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
 		</div>			<br>
 		<div property='author' mv-multiple style="display:inline;">
 			[name],
