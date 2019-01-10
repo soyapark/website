@@ -52,12 +52,7 @@ font-family: 'Noto Serif', serif;
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-131048336-1', 'auto');
         ga('send', 'pageview');
-  // window.dataLayer = window.dataLayer || [];
-  // function gtag(){dataLayer.push(arguments);}
-  // gtag('js', new Date());
-
-  // gtag('config', 'UA-131048336-1');
-
+	
   function test() {
   	var _this=this;gtag(['_set','hitCallback',function(){document.location=_this.href;}]);gtag(['_trackEvent','outbound','click',_this.href]);alert('here!');return false;
   }
@@ -111,9 +106,9 @@ font-family: 'Noto Serif', serif;
 
 	<div property='paper'>
 		<i>[title]</i>
-		<!-- <div property='library'>
-			<a href=[link]>[name]</a>,
-		</div>		 -->	<br>
+		<div property='link' mv-multiple style="display:inline;">
+			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
+		</div>				<br>
 		<div property='author' mv-multiple style="display:inline;">
 			[name],
 			<!-- <a href="[link]">[name]</a>, -->

@@ -2,6 +2,12 @@
 	"paper": [
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study (to appear)",
+			"link": [
+				{
+					"name": "pdf",
+					"link": "papers/mailbot.pdf"
+				}
+			],
 			"author": [
 				{
 					"name": "Soya Park",
@@ -12,7 +18,7 @@
 					"link":	"http://people.csail.mit.edu/axz/"
 				},
 				{
-					"name": "Luke Murray",
+					"name": "Luke S. Murray",
 					"link":	""
 				},
 				{
