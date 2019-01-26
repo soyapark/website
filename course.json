@@ -1,3 +1,25 @@
 {
-	"intro": "testsdfsdf"
+	"intro": "testsdfsdf",
+	"lecture": [
+		{
+			"date": "2/6",
+			"topic": "Introduction",
+			"assignment": [
+				{
+					"github": "tarfahalrashed",
+					"due": "2/13"
+				}
+			],
+			"reading": [
+				{
+					"github": "tarfahalrashed"
+				}
+			]
+		}
+	],
+	"grading": {
+		"category": [
+			{}
+		]
+	}
 }
