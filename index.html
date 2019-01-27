@@ -16,7 +16,8 @@
 /* font-family: 'Roboto Mono', monospace; */
 /* font-family: 'PT Serif', serif; */
  /* font-family: 'Major Mono Display', monospace; */
-font-family: 'Noto Serif', serif;
+		font-family: 'Noto Serif', serif;
+		margin-left:30px;
     }
 
     a {
@@ -91,7 +92,7 @@ font-family: 'Noto Serif', serif;
 
 </head>
 
-<body style="margin-left:30px;" mv-app="profile" mv-storage="https://github.com/soyapark/goldenretriever">
+<body mv-app="profile" mv-storage="https://github.com/soyapark/goldenretriever">
 	<h1> Soya Park </h1>
 
 	<p>
@@ -104,7 +105,7 @@ font-family: 'Noto Serif', serif;
 
 	<h2> Publications </h2>
 
-	<div property='paper'>
+	<div property='paper' mv-multiple>
 		<i>[title]</i>
 		<div property='link' mv-multiple style="display:inline;">
 			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
@@ -119,7 +120,7 @@ font-family: 'Noto Serif', serif;
 	<h2> Posters </h2>
 
 
-	<div property='poster'>
+	<div property='poster' mv-multiple>
 		<i>[title]</i>
 		<div property='link' mv-multiple style="display:inline;">
 			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
@@ -129,6 +130,15 @@ font-family: 'Noto Serif', serif;
 			<!-- <a href="[link]">[name]</a>, -->
 		</div>	
 		<div class="conference">[conference]</div><br>
+	</div>
+
+	<h2> Community Service </h2>
+
+	<div property='community-service' mv-multiple>
+		<span>[title]</span>
+		<div property='link' mv-multiple style="display:inline;">
+			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
+		</div>		
 	</div>
 
 	<h2> Ellen </h2>
