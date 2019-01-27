@@ -58,5 +58,34 @@
 			],
 			"conference": "UIST '18"
 		}
+	],
+	"community-service": [
+		{
+			"title": "Haystack Group Outing",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2018haystack.pdf"
+				}
+			]
+		},
+		{
+			"title": "MIT HCI Brunch",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2018hci_brunch.pdf"
+				}
+			]
+		},
+		{
+			"title": "CSAIL Olympics : Pancake Eating Contest",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2019csail_olympics.pdf"
+				}
+			]
+		}
 	]
 }
