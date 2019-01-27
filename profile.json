@@ -1,7 +1,7 @@
 {
 	"paper": [
 		{
-			"title": "Opportunities for Automating Email Processing: A Need-Finding Study (to appear)",
+			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
 			"link": [
 				{
 					"name": "pdf",
@@ -26,7 +26,7 @@
 					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
-			"conference": "CHI '19"
+			"conference": "CHI '19 (to appear)"
 		}
 	],
 	"poster": [
