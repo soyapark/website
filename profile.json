@@ -77,7 +77,7 @@
 					"link": "service/2018hci_brunch.pdf"
 				},
 				{
-					"name": "Instagram",
+					"name": "instagram",
 					"link": "https://www.instagram.com/p/Bq77axLneNf/"
 				}
 			]
@@ -88,6 +88,10 @@
 				{
 					"name": "email",
 					"link": "service/2019csail_olympics.pdf"
+				},
+				{
+					"name": "instagram",
+					"link": "https://www.instagram.com/p/BtRQOLVHPeW/"
 				}
 			]
 		}
