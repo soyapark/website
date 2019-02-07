@@ -94,6 +94,15 @@
 					"link": "https://www.instagram.com/p/BtRQOLVHPeW/"
 				}
 			]
+		},
+		{
+			"title": "TA 6.894 Interactive Data visualization",
+			"link": [
+				{
+					"name": "website",
+					"link": "http://vis.csail.mit.edu/classes/6.894"
+				}
+			]
 		}
 	]
 }
