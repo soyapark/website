@@ -1,12 +1,12 @@
 {
 	"travel": [
 		{
-			"tile": "CHI '19, Glasgow"
+			"tile": "CHI '19, Glasgow",
 			"from": "2019-05-04",
 			"to": "2019-05-10"
 		},
 		{
-			"tile": "EPFL, Switzerland"
+			"tile": "EPFL, Switzerland",
 			"from": "2019-04-29",
 			"to": "2019-05-04"
 		}
