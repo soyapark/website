@@ -1,7 +1,19 @@
 {
+	"travel": [
+		{
+			"title": "EPFL, Switzerland",
+			"from": "2019-04-29",
+			"to": "2019-05-04"
+		},
+		{
+			"title": "CHI '19, Glasgow",
+			"from": "2019-05-04",
+			"to": "2019-05-10"
+		}
+	],
 	"paper": [
 		{
-			"title": "Opportunities for Automating Email Processing: A Need-Finding Study (to appear)",
+			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
 			"link": [
 				{
 					"name": "pdf",
@@ -14,19 +26,19 @@
 					"link":	""
 				},
 				{
-					"name": "Amy X. Zhang",
+					"name": "Amy Zhang",
 					"link":	"http://people.csail.mit.edu/axz/"
 				},
 				{
-					"name": "Luke S. Murray",
+					"name": "Luke Murray",
 					"link":	""
 				},
 				{
-					"name": "David R. Karger",
+					"name": "David Karger",
 					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
-			"conference": "CHI '19"
+			"conference": "CHI '19 (to appear)"
 		}
 	],
 	"poster": [
@@ -48,11 +60,11 @@
 					"link":	""
 				},
 				{
-					"name": "Amy X. Zhang",
+					"name": "Amy Zhang",
 					"link":	"http://people.csail.mit.edu/axz/"
 				},
 				{
-					"name": "David R. Karger",
+					"name": "David Karger",
 					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
@@ -75,6 +87,10 @@
 				{
 					"name": "email",
 					"link": "service/2018hci_brunch.pdf"
+				},
+				{
+					"name": "instagram",
+					"link": "https://www.instagram.com/p/Bq77axLneNf/"
 				}
 			]
 		},
@@ -84,6 +100,23 @@
 				{
 					"name": "email",
 					"link": "service/2019csail_olympics.pdf"
+				},
+				{
+					"name": "instagram",
+					"link": "https://www.instagram.com/p/BtRQOLVHPeW/"
+				}
+			]
+		},
+		{
+			"title": "TA 6.894 Interactive Data visualization",
+			"link": [
+				{
+					"name": "website",
+					"link": "http://vis.csail.mit.edu/classes/6.894"
+				},
+				{
+					"name": "twitter",
+					"link": "https://twitter.com/park_soya/status/1093240795212201985"
 				}
 			]
 		}
