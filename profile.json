@@ -1,14 +1,14 @@
 {
 	"travel": [
 		{
-			"title": "CHI '19, Glasgow",
-			"from": "2019-05-04",
-			"to": "2019-05-10"
-		},
-		{
 			"title": "EPFL, Switzerland",
 			"from": "2019-04-29",
 			"to": "2019-05-04"
+		},
+		{
+			"title": "CHI '19, Glasgow",
+			"from": "2019-05-04",
+			"to": "2019-05-10"
 		}
 	],
 	"paper": [
