@@ -99,7 +99,13 @@
 	I am a <a title="first-year Ph.D. student" style="color:black;cursor:auto;">Ph.D. student</a> at MIT CSAIL. My advisor is <a onclick="trackOutboundLink('http://people.csail.mit.edu/karger/','link '+ ' karger', this);return false;">David R. Karger</a>.
 	<br>I study online collaboration and build systems to help people get their work done.
 	</p>
-	[my first name]@mit.edu<br/>
+	[my first name]@mit.edu<br/><br/>
+
+	<div property='travel' mv-multiple>
+		<div style="display:[if(to < $today, none, inline)]">
+			<span>[if(year($today)==year(from), '', year(from))] [month(from)]/[day(from)] ~ [if(year($today)==year(to), '', year(to))] [month(to)]/[day(to)] [title]</span>
+		</div>
+	</div><br/>
 
 	<img style="width:300;" src='headshot.JPG'/>
 
