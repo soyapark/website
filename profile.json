@@ -120,8 +120,12 @@
 					"link": "http://vis.csail.mit.edu/classes/6.894"
 				},
 				{
-					"name": "twitter",
+					"name": "tweet #1",
 					"link": "https://twitter.com/park_soya/status/1093240795212201985"
+				},
+				{
+					"name": "tweet #2",
+					"link": "https://twitter.com/park_soya/status/1100853708588486659"
 				}
 			]
 		}
