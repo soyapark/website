@@ -3,7 +3,7 @@
 		{
 			"title": "EPFL, Switzerland",
 			"from": "2019-04-29",
-			"to": "2019-05-04"
+			"to": "2019-05-03"
 		},
 		{
 			"title": "CHI '19, Glasgow",
@@ -23,6 +23,10 @@
 				{
 					"name": "pdf",
 					"link": "papers/mailbot.pdf"
+				},
+				{
+					"name": "press",
+					"link": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429?fbclid=IwAR392UQThRAmqF6Xk2K8v5PRZixPVr-j2jO5pXKMSikA1KMwgwgthLHFvxw"
 				}
 			],
 			"author": [
@@ -76,7 +80,7 @@
 			"conference": "UIST '18"
 		}
 	],
-	"community-service": [
+	"community-service & news": [
 		{
 			"title": "Haystack Group Outing",
 			"link": [
