@@ -36,6 +36,10 @@
 				{
 					"name": "press",
 					"link": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429?fbclid=IwAR392UQThRAmqF6Xk2K8v5PRZixPVr-j2jO5pXKMSikA1KMwgwgthLHFvxw"
+				},
+				{
+					"name": "survey",
+					"link": "papers/mailbot_survey.pdf"
 				}
 			],
 			"author": [
