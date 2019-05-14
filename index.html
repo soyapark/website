@@ -103,7 +103,7 @@
 
 	<div property='travel' mv-multiple>
 		<div style="display:[if(to < $today, none, inline)]">
-			<span>[if(year($today)==year(from), '', year(from))] [month(from)]/[day(from)] ~ [if(year($today)==year(to), '', [year(to)])] [month(to)]/[day(to)] [title]</span>
+			<span>[month(from)]/[day(from)][if(year($today)==year(from), '', ',' + [year(from)])] ~ [month(to)]/[day(to)][if(year($today)==year(to), '', ',' + [year(to)])] [title]</span>
 		</div>
 	</div><br/>
 
