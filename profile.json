@@ -108,39 +108,13 @@
 			"conference": "UIST '18"
 		}
 	],
-	"community-service": [
+	"news": [
 		{
 			"title": "Haystack Group Outing",
 			"link": [
 				{
 					"name": "email",
 					"link": "service/2018haystack.pdf"
-				}
-			]
-		},
-		{
-			"title": "MIT HCI Brunch",
-			"link": [
-				{
-					"name": "email",
-					"link": "service/2018hci_brunch.pdf"
-				},
-				{
-					"name": "instagram",
-					"link": "https://www.instagram.com/p/Bq77axLneNf/"
-				}
-			]
-		},
-		{
-			"title": "CSAIL Olympics : Pancake Eating Contest",
-			"link": [
-				{
-					"name": "email",
-					"link": "service/2019csail_olympics.pdf"
-				},
-				{
-					"name": "instagram",
-					"link": "https://www.instagram.com/p/BtRQOLVHPeW/"
 				}
 			]
 		},
@@ -188,11 +162,6 @@
 			]
 		},
 		{
-			"title": "CSCW 2019 Student Reviewer Mentor Program",
-			"link": [
-			]
-		},
-		{
 			"title": "Spent a great semester with my UROP student!",
 			"link": [
 				{
@@ -208,6 +177,53 @@
 					"name": "tweet",
 					"link": "https://twitter.com/marcua/status/1159499192215244800?s=20"
 				}
+			]
+		}
+	],
+	"community-service": [
+		{
+			"title": "Haystack Group Outing",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2018haystack.pdf"
+				}
+			]
+		},
+		{
+			"title": "MIT HCI Brunch",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2018hci_brunch.pdf"
+				},
+				{
+					"name": "instagram",
+					"link": "https://www.instagram.com/p/Bq77axLneNf/"
+				}
+			]
+		},
+		{
+			"title": "CSAIL Olympics : Pancake Eating Contest",
+			"link": [
+				{
+					"name": "email",
+					"link": "service/2019csail_olympics.pdf"
+				},
+				{
+					"name": "instagram",
+					"link": "https://www.instagram.com/p/BtRQOLVHPeW/"
+				}
+			]
+		},
+		{
+			"title": "CSCW Student Reviewer Mentor Program 2019",
+			"link": [
+			]
+		},
+		{
+			"title": "ICWSM Review 2020",
+			"link": [
 			]
 		}
 	]
