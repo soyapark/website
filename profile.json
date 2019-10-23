@@ -110,15 +110,6 @@
 	],
 	"news": [
 		{
-			"title": "Haystack Group Outing",
-			"link": [
-				{
-					"name": "email",
-					"link": "service/2018haystack.pdf"
-				}
-			]
-		},
-		{
 			"title": "TA 6.894 Interactive Data visualization",
 			"link": [
 				{
