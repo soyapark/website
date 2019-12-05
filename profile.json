@@ -26,6 +26,11 @@
 			"to": "2019-10-24"
 		},
 		{
+			"title": "Baltimore, MD",
+			"from": "2019-11-10",
+			"to": "2019-11-13"
+		},
+		{
 			"title": "Seoul, South Korea",
 			"from": "2019-12-28",
 			"to": "2020-01-15"
@@ -109,15 +114,6 @@
 		}
 	],
 	"news": [
-		{
-			"title": "Haystack Group Outing",
-			"link": [
-				{
-					"name": "email",
-					"link": "service/2018haystack.pdf"
-				}
-			]
-		},
 		{
 			"title": "TA 6.894 Interactive Data visualization",
 			"link": [
@@ -217,12 +213,22 @@
 			]
 		},
 		{
-			"title": "CSCW Student Reviewer Mentor Program 2019",
+			"title": "CSCW '19 Review (Student Reviewer Mentor Program)",
 			"link": [
 			]
 		},
 		{
-			"title": "ICWSM Review 2020",
+			"title": "ICWSM '20 Review",
+			"link": [
+			]
+		},
+		{
+			"title": "CHI '20 Review",
+			"link": [
+			]
+		},
+		{
+			"title": "Panel at MIT WiEECS Research Workshop",
 			"link": [
 			]
 		}
