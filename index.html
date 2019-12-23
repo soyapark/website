@@ -21,7 +21,7 @@
 		cursor: pointer;
     }
 
-    .conference {
+   .extra {
     	margin-left: 30;
     }
 
@@ -96,7 +96,7 @@
 
 
 	I am a <a title="first-year Ph.D. student" style="color:black;cursor:auto;">Ph.D. student</a> at MIT CSAIL. My advisor is <a onclick="trackOutboundLink('http://people.csail.mit.edu/karger/','link '+ ' karger', this);return false;">David R. Karger</a>.
-	<br>I study online collaboration and build systems to help people get their work done.
+	<br>I study the way people can <i>teach</i> machines using their own common sense and in their own natural way. I build systems to facilitate such teaching. 
 	</p>
 	
 
@@ -111,30 +111,33 @@
 	<h2> Publications </h2>
 
 	<div property='paper' mv-multiple>
-		<i>[title]</i>
+		<b>[title]</b>
 		<div property='link' mv-multiple style="display:inline;">
 			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
 		</div>				<br>
 		<div property='author' mv-multiple style="display:inline;">
 			[name],
 			<!-- <a href="[link]">[name]</a>, -->
-		</div>	
-		<div class="conference">[conference]</div><br>
+		</div><span class="conference">[conference]</span><br><br>
+		<div property='talk' class='extra'>
+			<span>Talk:</span><br/>
+			<iframe width="280" height="155" src="https://www.youtube.com/embed/gQUIl3DMoyk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+		</div><br/>
+		<div property='press' class='extra'>
+			<span>Press:</span><br/>
+			<a href="http://news.mit.edu/2019/better-email-automation-mit-csail-0429">Better Email Automation</a> by MIT News
+		</div><br/>
 	</div>
 
-	<h2> Posters </h2>
-
-
 	<div property='poster' mv-multiple>
-		<i>[title]</i>
+		<b>[title]</b>
 		<div property='link' mv-multiple style="display:inline;">
 			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
 		</div>			<br>
 		<div property='author' mv-multiple style="display:inline;">
 			[name],
 			<!-- <a href="[link]">[name]</a>, -->
-		</div>	
-		<div class="conference">[conference]</div><br>
+		</div>	<span class="conference">[conference]</span><br><br>
 	</div>
 
 	<h2> Community Service </h2>
@@ -155,8 +158,12 @@
 		</div>		
 	</div>
 
+	<h2> Toby @ Cambridge, MA</h2>
+	<div class="ellen-container">
+		<img src='img/toby1.jpg'><img src='img/toby2.jpg'>
+	</div>
 
-	<h2> Ellen </h2>
+	<h2> Ellen @ Seoul</h2>
 	Everyone! Meet Ellen, the absolutely good boy! 
 	<div class="ellen-container">
 		<img src='img/ellen0.jpg'><img src='img/ellen1.jpg'><img src='img/ellen2.jpg'>
