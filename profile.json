@@ -178,6 +178,26 @@
 			]
 		}
 	],
+	"mentorship": [
+		{
+			"title": "Dillon Zhang - UROP 2019 Spring",
+			"link": [
+				{
+					"name": "write-up",
+					"link": "https://youps.csail.mit.edu/calendar"
+				}
+			]
+		},
+		{
+			"title": "Lillian Bu - UROP 2019 Fall"
+		},
+		{
+			"title": "Cynthia Du - UROP 2020 Winter"
+		},
+		{
+			"title": "Guillermo Vasquez, Anna Wong - UROP 2020 Spring"
+		}
+	],
 	"community-service": [
 		{
 			"title": "Haystack Group Outing",
