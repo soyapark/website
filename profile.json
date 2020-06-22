@@ -117,6 +117,15 @@
 	],
 	"news": [
 		{
+			"title": "Co-organizing CHI '20 Boston",
+			"link": [
+				{
+					"name": "youtube",
+					"link": "https://www.youtube.com/channel/UCwr4DF8bbjzyNmGXcWaGJCQ"
+				}
+			]
+		},
+		{
 			"title": "TA 6.894 Interactive Data visualization",
 			"link": [
 				{
@@ -235,17 +244,22 @@
 			]
 		},
 		{
-			"title": "CSCW '19 (Student Reviewer Mentor Program), '20 Review",
-			"link": [
-			]
-		},
-		{
-			"title": "ICWSM '20 Review",
-			"link": [
-			]
-		},
-		{
 			"title": "CHI '20 Review",
+			"link": [
+			]
+		},
+		{
+			"title": "CSCW '19 (Student Reviewer Mentor Program) '20 Review",
+			"link": [
+			]
+		},
+		{
+			"title": "ICWSM '20 '21 Review",
+			"link": [
+			]
+		},
+		{
+			"title": "UIST '20 Review",
 			"link": [
 			]
 		},
