@@ -104,7 +104,7 @@
 		<div class="col-lg-2 col-8"><img id='headshot' src='headshot.JPG'/></div>
 		<div class="col-lg-5 col-12">
 			I am a <a title="first-year Ph.D. student" style="color:black;cursor:auto;">Ph.D. student</a> at MIT CSAIL. My advisor is <a href="http://people.csail.mit.edu/karger/">David R. Karger</a>.
-			<br>
+			<br><br>
 			Our daily life is impacted by complex intelligent systems, such as AI and Big data, but not everyone understands how these systems work. This creates a disconnect: while the users of these intelligent systems are technical experts in their own domains, but they must rely on third parties to build or access such systems. In my research, I approach this by empowering the domain experts/users of such complex systems by providing an intelligent interface to elicit their domain knowledge.</p>		
 		</div>
 		<div class="col-lg-5 col-12"></div>
@@ -134,14 +134,16 @@
 			[name],
 			<!-- <a href="[link]">[name]</a>, -->
 		</div><span class="conference">[conference]</span><br><br>
-		<div property='talk' class='extra'>
+		<div class='extra' style="display:[if(count(talk)>0, block, none)]">
 			<span>Talk:</span><br/>
-			<iframe width="280" height="155" src="https://www.youtube.com/embed/gQUIl3DMoyk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-		</div><br/>
-		<div property='press' class='extra'>
+			<iframe width="280" height="155" src="[talk]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+			<br/>
+		</div>
+		<div class='extra' style="display:[if(count(press)>0, block, none)]">
 			<span>Press:</span><br/>
-			<a href="http://news.mit.edu/2019/better-email-automation-mit-csail-0429">Better Email Automation</a> by MIT News
-		</div><br/>
+			<a href="[press]">Better Email Automation</a> by MIT News
+			<br/><br>
+		</div>
 	</div>
 
 	<div property='poster' mv-multiple>
@@ -160,7 +162,7 @@
 	<div property='mentorship' mv-multiple>
 		<span>[title]</span>
 		<div property='link' mv-multiple style="display:inline;">
-			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
+			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>
 		</div>		
 	</div>
 
