@@ -44,6 +44,30 @@
 	],
 	"paper": [
 		{
+			"title": "How AI Developers Overcome Communication Challenges in a Multidisciplinary Team: A Case Study",
+			"link": [
+				
+			],
+			"author": [
+				{
+					"name": "David Piorkowski",
+					"link":	""
+				},
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "TBA",
+					"link": ""
+				}
+			],
+			"conference": "CSCW '21 (to appear)",
+			"talk": [
+			],
+			"press": []
+		},
+		{
 			"title": "Facilitating knowledge sharing from domain experts to data scientists for building NLP models",
 			"link": [
 				
@@ -54,10 +78,11 @@
 					"link":	""
 				},
 				{
-					"name": "TBA"
+					"name": "TBA",
+					"link": ""
 				}
 			],
-			"conference": "IUI '21",
+			"conference": "IUI '21 (to appear)",
 			"talk": [
 			],
 			"press": []
