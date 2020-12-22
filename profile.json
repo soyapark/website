@@ -82,6 +82,10 @@
 					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
+			"talk": [
+				"https://www.youtube.com/embed/gQUIl3DMoyk"
+			],
+			"talk2": "https://www.youtube.com/embed/gQUIl3DMoyk",
 			"conference": "CHI '19"
 		}
 	],
