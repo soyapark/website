@@ -44,6 +44,25 @@
 	],
 	"paper": [
 		{
+			"title": "Facilitating knowledge sharing from domain experts to data scientists for building NLP models",
+			"link": [
+				
+			],
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "TBA"
+				}
+			],
+			"conference": "IUI '21",
+			"talk": [
+			],
+			"press": []
+		},
+		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
 			"link": [
 				{
@@ -82,11 +101,11 @@
 					"link":	"http://people.csail.mit.edu/karger/"
 				}
 			],
+			"conference": "CHI '19",
 			"talk": [
 				"https://www.youtube.com/embed/gQUIl3DMoyk"
 			],
-			"talk2": "https://www.youtube.com/embed/gQUIl3DMoyk",
-			"conference": "CHI '19"
+			"press": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429"
 		}
 	],
 	"poster": [
