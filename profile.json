@@ -121,9 +121,11 @@
 				}
 			],
 			"conference": "IUI '21",
-			"talk": [
-				"https://www.youtube.com/embed/tXYFxJz766Q"
-			],
+			"talk": {
+				"title": "Pushing the boundaries of human-AI interaction",
+				"author": "IBM Blog",
+				"link": "https://www.youtube.com/embed/tXYFxJz766Q"
+			},
 			"press": "https://www.ibm.com/blogs/research/2021/04/ibm-at-iui-2021/"
 		},
 		{
@@ -166,9 +168,11 @@
 				}
 			],
 			"conference": "CHI '19",
-			"talk": [
-				"https://www.youtube.com/embed/gQUIl3DMoyk"
-			],
+			"talk": {
+				"title": "Better Email Automation",
+				"author": "MIT News",
+				"link": "https://www.youtube.com/embed/gQUIl3DMoyk"
+			},
 			"press": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429"
 		}
 	],
