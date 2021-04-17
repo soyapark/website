@@ -88,6 +88,10 @@
 				{
 					"name": "pdf",
 					"link": "https://arxiv.org/pdf/2102.00036v1.pdf"
+				},
+				{
+					"name": "acm dl",
+					"link": "https://dl.acm.org/doi/10.1145/3397481.3450637"
 				}
 			],
 			"author": [
@@ -116,10 +120,11 @@
 					"link": ""
 				}
 			],
-			"conference": "IUI '21 (to appear)",
+			"conference": "IUI '21",
 			"talk": [
+				"https://youtu.be/tXYFxJz766Q"
 			],
-			"press": []
+			"press": "https://www.ibm.com/blogs/research/2021/04/ibm-at-iui-2021/"
 		},
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
