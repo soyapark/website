@@ -128,7 +128,7 @@
 				"title": "Pushing the boundaries of human-AI interaction",
 				"author": "IBM Blog",
 				"link": "https://www.ibm.com/blogs/research/2021/04/ibm-at-iui-2021/"
-			},
+			}
 		},
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
@@ -177,7 +177,7 @@
 				"title": "Better Email Automation",
 				"author": "MIT News",
 				"link": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429"
-			},
+			}
 		}
 	],
 	"poster": [
