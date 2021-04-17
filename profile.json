@@ -121,12 +121,14 @@
 				}
 			],
 			"conference": "IUI '21",
-			"talk": {
+			"talk": [
+				"https://www.youtube.com/embed/tXYFxJz766Q"
+			],
+			"press": {
 				"title": "Pushing the boundaries of human-AI interaction",
 				"author": "IBM Blog",
-				"link": "https://www.youtube.com/embed/tXYFxJz766Q"
+				"link": "https://www.ibm.com/blogs/research/2021/04/ibm-at-iui-2021/"
 			},
-			"press": "https://www.ibm.com/blogs/research/2021/04/ibm-at-iui-2021/"
 		},
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
@@ -168,12 +170,14 @@
 				}
 			],
 			"conference": "CHI '19",
-			"talk": {
+			"talk": [
+				"https://www.youtube.com/embed/gQUIl3DMoyk"
+			],
+			"press": {
 				"title": "Better Email Automation",
 				"author": "MIT News",
-				"link": "https://www.youtube.com/embed/gQUIl3DMoyk"
+				"link": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429"
 			},
-			"press": "http://news.mit.edu/2019/better-email-automation-mit-csail-0429"
 		}
 	],
 	"poster": [
