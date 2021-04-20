@@ -128,7 +128,7 @@
 	<div property='paper' mv-multiple>
 		<b>[title]</b>
 		<div property='link' mv-multiple style="display:inline;">
-			<a onclick="trackOutboundLink('[link]','link '+ ' [name]', this);return false;">[name]</a>,
+			<a href="[link]" target="_blank" rel="noopener noreferrer">[name]</a>,
 		</div>				<br>
 		<div property='author' mv-multiple style="display:inline;">
 			[name],
@@ -139,7 +139,7 @@
 			<iframe width="280" height="155" src="[talk]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 			<br/>
 		</div>
-		<div class='extra' style="display:[if(count(press)>0, block, none)]" property="press">
+		<div class='extra' style="display:[if(count(press)>0, block, none)]" property="press" mv-multiple>
 			<span>Press:</span><br/>
 			<a href="[link]">[title]</a> by [by]
 			<br/><br>
