@@ -1,0 +1,840 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Opportunities for Automating Email Processing: A Need-Finding Study</title>
+
+  <!-- <link media="screen, print" rel="stylesheet" href="./webreader_files/bootstrap.min.css">
+  <link media="screen, print" rel="stylesheet" href="./webreader_files/bootstrap-theme.min.css"> -->
+  <link media="screen, print" rel="stylesheet" href="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/bootstrap.min.css">
+  <link media="screen, print" rel="stylesheet" href="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/bootstrap-theme.min.css">
+  <link media="screen, print" rel="stylesheet" href="../ocean-lib/contextmenu.css">
+  <link href="../ocean-lib/recogito.min.css" rel="stylesheet">
+  <link media="screen, print" rel="stylesheet" href="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/main.css">
+  <style>
+
+    h1 {
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    #outer-container {
+      position: relative;
+    }
+
+    #content {
+      max-width: 920px;
+      /* font-family: 'Lato', sans-serif; */
+      font-size: 17px;
+      line-height: 27px;
+    }
+
+    .surName {
+      margin-left: 5px;
+    }
+  </style>
+  <style>
+      .navbar {
+        overflow: hidden;
+        background-color: transparent;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 99;
+        min-height: 30px;
+        max-height: 30px;
+        border-top: 5px solid grey;
+      }
+  
+      .navbar select, .navbar button {
+        /* font-size: 50px; */
+        float:left;
+      }
+  
+      .navbar.closed {
+        visibility: hidden;
+      }
+  
+      .navbar .nav{
+        visibility: hidden;
+  
+      }
+  
+      .navbar:hover .nav {
+        visibility: visible;
+      }
+  
+      .nav > li > a {
+        /* float: left;
+        display: block; */
+        color: #f2f2f2;
+        text-align: center;
+        padding-top: 0;
+        text-decoration: none;
+        font-size: 17px;
+      }
+  
+      .navbar a:hover {
+        background: #ddd;
+        color: black;
+      }
+  
+      .navbar .close {
+        float:right;
+      }
+  
+      .widget {
+        background:#85D5AC;
+      }
+  
+      /* 5. CSS styles for the color selector widget */
+      .colorselector-widget {
+        padding:5px;
+        border-bottom:1px solid #e5e5e5;
+      }
+  
+      .colorselector-widget button {
+        outline:none;
+        border:none;
+        display:inline-block;
+        width:20px;
+        height:20px;
+        border-radius:50%;
+        cursor:pointer;
+        opacity:0.5;
+        margin:4px;
+      }
+  
+      .colorselector-widget button.selected,
+      .colorselector-widget button:hover {
+        opacity:1;
+      }
+  
+      .r6o-annotation {
+        border-bottom: 0px;
+      }
+  
+      .r6o-annotation.RED {
+        background-color: rgba(255, 0, 0, 0.3);
+        border-bottom: 2px solid orange;
+        cursor: pointer;
+      }
+  
+      .r6o-annotation.GREY {
+        background-color: rgba(220, 220, 220, 0.9);
+        border-bottom: 2px solid orange;
+        cursor: pointer;
+      }
+  
+      .r6o-annotation.WHITE {
+        background-color: initial;
+        border-bottom: 0px;
+        cursor: default;
+      }
+  
+      .highlighted {
+        background-color: yellowgreen;
+      }
+  
+      svg.a9s-annotationlayer .a9s-annotation.RED .a9s-outer {
+        stroke:red;
+        stroke-width:3;
+        fill:rgba(255, 0, 0, 0.3);
+      }
+  
+      svg.a9s-annotationlayer .a9s-annotation.GREEN .a9s-outer {
+        stroke:green;
+        stroke-width:3;
+        fill:rgba(0, 255, 0, 0.3);
+      }
+  
+      svg.a9s-annotationlayer .a9s-annotation.BLUE .a9s-outer {
+        stroke:blue;
+        stroke-width:3;
+        fill:rgba(0, 0, 255, 0.3);
+      }
+  
+      svg.a9s-annotationlayer .a9s-annotation.RED .a9s-inner,
+      svg.a9s-annotationlayer .a9s-annotation.GREEN .a9s-inner,
+      svg.a9s-annotationlayer .a9s-annotation.BLUE .a9s-inner {
+        fill:transparent;
+        stroke:none;
+      }
+  
+      .close {
+        position: absolute;
+        right: 2px;
+        /* top: 32px; */
+        width: 12px;
+        height: 12px;
+        /* opacity: 0.3; */
+      }
+      .close:hover {
+        opacity: 1;
+      }
+      .close:before, .close:after {
+        position: absolute;
+        /* left: 15px; */
+        content: ' ';
+        height: 17px;
+        width: 2px;
+        background-color: #333;
+      }
+      .close:before {
+        transform: rotate(45deg);
+      }
+      .close:after {
+        transform: rotate(-45deg);
+      }
+  
+      li:before{
+        content:attr(label);
+        padding-right:13px;
+        font-weight:700
+      }
+  
+      .bibUl li span {
+        /* margin-bottom: 5px; */
+        cursor: pointer;
+        background-color: #D4D585;
+      }
+  
+      .bibUl li .r6o-annotation {
+        background-color: initial;
+      }
+  
+      .table-number .r6o-annotation, figure .r6o-annotation {
+        background-color: #D4D585;
+      }
+    </style>
+  
+  <script>
+    // self executing function here
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+   function getSelectedText() {
+          if (window.getSelection) {
+              return window.getSelection().toString();
+          } else if (document.selection) {
+              return document.selection.createRange().text;
+          }
+          return '';}
+          
+   window.addEventListener('mouseup', function(event){
+    //  debugger;
+        console.log(event);
+        // alert();
+        var text=getSelectedText();
+          if (text!='') console.log(text);
+// do logic here
+})
+
+//     (function () {
+      
+//       document.querySelectorAll('div').addEventListener('click',(event) => {
+//         var text=getSelectedText();
+//           if (text!='') alert(text);
+// });
+    });
+    
+    </script>
+<script src="../ocean-lib/lib/jquery.min.js" type="text/javascript"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script src="../ocean-lib/firebase-auth.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@recogito/annotorious@2.1.6/dist/annotorious.min.js"></script> -->
+<script src="../ocean-lib/recogito-firebase-storage.js"></script>
+
+  
+
+  <script src="../ocean-lib/recogito.min.js"></script>
+
+
+</head>
+
+<body>
+  <!-- <div><button id="add-annotation">Add Annotation</button> <button id="update-annotation">Update Annotation</button>
+    <button id="remove-annotation">Remove Annotation</button> <button id="toggle-mode">MODE: ANNOTATION</button></div> -->
+  <!-- <div class="navbar" style="width:100%">
+      <ul id="tab-list" style="background: white;" class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#paper-tab1" role="tab" data-toggle="tab"><span>Main </span>
+                </a></li>
+      </ul>
+  </div> -->
+  <!-- Context-menu -->
+  <div class='context-menu'>
+      <div style="text-align: center;width: 100%;">Current tab</div>
+      <ul>
+          <li tabID=0 class="selected">Main</li>
+      </ul>
+      <span style="margin-left: 5px;">+ New tab: </span>
+      <select id="bookmark-nav">
+        <option value="default">Select a bookmark to create a new tab</option>
+      </select>
+  </div>  
+  <div id="outer-container">
+    <div class="alert alert-info" role="alert">
+      Welcome to Ocean demo! You can select texts in paper contents to create bookmarks and links. 
+    </div>
+      <div id="content" class="plaintext">
+      <main>
+        <section class="front-matter"> 
+   <section> 
+    <header class="title-info"> 
+     <div class="journal-title"> 
+      <h1> <span class="title">Opportunities for Automating Email Processing: A Need-Finding Study</span> <br> <span class="subTitle"></span> </h1> 
+     </div> 
+    </header> 
+    <div class="authorGroup"> 
+     <div class="author"> 
+      <span class="givenName">Soya</span> 
+      <span class="surName">Park</span>, Massachusetts Institute of Technology, USA, 
+      <a href="mailto:soya@mit.edu">soya@mit.edu</a> 
+     </div> 
+     <div class="author"> 
+      <span class="givenName">Amy</span> 
+      <span class="surName">Zhang</span>, Massachusetts Institute of Technology, USA, 
+      <a href="mailto:axz@mit.edu">axz@mit.edu</a> 
+     </div> 
+     <div class="author"> 
+      <span class="givenName">Luke</span> 
+      <span class="surName">Murray</span>, Massachusetts Institute of Technology, USA, 
+      <a href="mailto:lsmurray@mit.edu">lsmurray@mit.edu</a> 
+     </div> 
+     <div class="author"> 
+      <span class="givenName">David</span> 
+      <span class="surName">Karger</span>, Massachusetts Institute of Technology, USA, 
+      <a href="mailto:karger@mit.edu">karger@mit.edu</a> 
+     </div> 
+    </div> 
+    <br> 
+    <div class="pubInfo"> 
+     <p>DOI: <a href="https://doi.org/10.1145/3290605.3300604" target="_blank">https://doi.org/10.1145/3290605.3300604</a> <br>CHI '19: <a href="https://doi.org/10.1145/3290605" target="_blank">Proceedings of CHI Conference on Human Factors in Computing Systems</a>, Glasgow, Scotland UK, May 2019</p> 
+    </div> 
+    <div class="abstract"> 
+     <p><small>Email management consumes significant effort from senders and recipients. Some of this work might be automatable. We performed a mixed-methods need-finding study to learn: (i) what sort of automatic email handling users want, and (ii) what kinds of information and computation are needed to support that automation. Our investigation included a design workshop to identify categories of needs, a survey to better understand those categories, and a classification of existing email automation software to determine which needs have been addressed. Our results highlight the need for: a richer data model for rules, more ways to manage attention, leveraging internal and external email context, complex processing such as response aggregation, and affordances for senders. To further investigate our findings, we developed a platform for authoring small scripts over a user's inbox. Of the automations found in our studies, half are impossible in popular email clients, motivating new design directions.</small> </p> 
+    </div> 
+    <div class="CCSconcepts"> 
+     <ccs2012>
+      <small> <span style="font-weight:bold;">CCS Concepts:</span> • <strong>Social and professional topics → Automation</strong>; • <strong>Information systems → Email</strong>;</small> 
+     </ccs2012> 
+    </div> 
+    <br> 
+    <div class="classifications"> 
+     <div class="author"> 
+      <span style="font-weight:bold;"><small>Keywords:</small></span> 
+      <span class="keyword"><small>email; task management; personal information management</small></span> 
+     </div> 
+     <br> 
+     <div class="AcmReferenceFormat"> 
+      <p><small> <span style="font-weight:bold;">ACM Reference Format:</span> <br>Soya Park, Amy Zhang, David Karger, and Luke Murray. 2019. Opportunities for Automating Email Processing: A Need-Finding Study. In <em>Proceedings of CHI Conference on Human Factors in Computing Systems (CHI '19), May 4–9, 2019, Glasgow, Scotland UK.</em> ACM, New York, NY, USA 13 Pages. <a href="https://doi.org/10.1145/3290605.3300604" class="link-inline force-break" target="_blank">https://doi.org/10.1145/3290605.3300604</a></small></p> 
+     </div> 
+    </div> 
+   </section> 
+  </section> 
+  <section class="body"> 
+   <section id="sec-2"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">1</span></span> INTRODUCTION</h2> 
+     </div> 
+    </header> 
+    <p>In the 50 years since email was invented, it has become not only a ubiquitous tool for private and group communication&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0006" data-original-title="" title="" id="auto-BibPLXBIB00061">6</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0032" data-original-title="" title="" id="auto-BibPLXBIB00322">32</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0058" data-original-title="" title="" id="auto-BibPLXBIB00583">58</a>] but also a place for managing personal information&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0010" data-original-title="" title="" id="auto-BibPLXBIB00104">10</a>], activities and events&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0005" data-original-title="" title="" id="auto-BibPLXBIB00055">5</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0056" data-original-title="" title="" id="auto-BibPLXBIB00566">56</a>], and tasks&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0012" data-original-title="" title="" id="auto-BibPLXBIB00127">12</a>]. As a result, email today has become closely associated with work, and for many people, a majority of their workday is spent within email&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0021" data-original-title="" title="" id="auto-BibPLXBIB00218">21</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0056" data-original-title="" title="" id="auto-BibPLXBIB00569">56</a>].</p> 
+    <p>Given the workload it generates, there has been a longstanding desire to <em>automate</em> various aspects of email processing, reaching at least as far back as <tt>procmail</tt>, released in 1990, which let authors write regular-expression scripts to filter email into chosen folders. Over time, richer automation functionalities have emerged. For example, Boomerang&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0008" data-original-title="" title="" id="auto-BibPLXBIB000810">8</a>] permits users to defer received emails, pushing them off to be re-received at a later date. Different apps offer different automation features, forcing a user to juggle a suite of 3rd party plugins to manage all their needs, rely on a human assistant, or simply do everything manually&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0005" data-original-title="" title="" id="auto-BibPLXBIB000511">5</a>].</p> 
+    <section id="sec-3"> 
+     <section id="sec-4"> 
+      <p><em> Approach.</em> In this work, we sought to explore the breadth of needs that users have regarding automating their email experience, with the eventual goal of designing a useful, general purpose email automation system. We conducted this work through a series of three distinct need-finding probes as shown in Table&nbsp;<a class="tbl" href="#tab1">1</a>. First, we aimed to gather from a broad audience of users wishful thinking <em>ideas</em> for automating email in their own inboxes. From a formative design workshop with 13 email users who were asked to brainstorm commands in natural language that they would like to execute, we developed a series of common categories of needs, including attention management and prioritization, filing and labeling, automated content processing, and rules based on contextual modes. These categories informed the design of a survey that we distributed to 77 additional people. The survey contained sections dedicated to each category with open-ended prompts asking for more ideas for automations users would like to perform.</p> 
+      <p>Moving from users’ ideas regarding automation, we next sought to identify the ways in which users were <em>already</em> automating aspects of their email to see which needs have been addressed. As automation capabilities available to end users in many email clients are limited, we instead examined automations implemented by programmers, who have greater ability to carry out their desires for personalized automation. We conducted this probe by mining public repositories on Github that make use of the IMAP (Internet Message Access Protocol) API. From around 500 scripts, we developed a taxonomy of 8 types of automated email processing tools.</p> 
+      <p>Even for programmers, writing a standalone mail automation program is a substantial task. This could deter many automations from ever being created. Therefore, informed by these two probes, we developed a platform called YouPS that makes it possible for users to write, test, debug, save, and continually execute simple Python scripts that can manipulate emails arriving in their inbox. YouPS exposes a small set of Python functions for basic actions such as accessing an email field or moving an email to a particular folder, hiding all the complexity of turning these function calls into invocations of the IMAP API to manipulate the users’ email on their server. This platform served as a probe into what kinds of scripts email users would write given the opportunity to <em>easily</em> test and run them over their own email. We invited 12 subjects to write and execute scripts on YouPS for a week; we then examined their scripts and interviewed them about their experiences.</p> 
+     </section> 
+     <section id="sec-5"> 
+      <p><em> Results.</em> Our design workshop identified several common categories of needs in email automation, which were elucidated through our later studies. The first was a <em>richer data model</em> for an email to capture latent structured information such as priority, topic, deadline, and need for a reply. The next was automation leveraging the <em>context</em> of an email, both within and beyond the email inbox. Some examples include the time of day, characteristics of the email thread (e.g., previous replies by a recipient, number or rate of responses by others), and the state of the recipient (e.g., busy, sleeping, in the office, on vacation). These attributes and contextual information are needed to drive automations that help recipients with <em>attention management</em> of email through the configuration of different forms of notifications and presentations of messages. In an interesting inversion, we also found that <em>senders</em> wanted to leverage rich data and context to <em>reduce load on recipients</em>, for example by automatically delaying an email from being sent until the recipient is in a not-busy context or at a suitable location. Finally, users sought <em>automated content processing</em>, for example to aggregate replies to an invitation or to extract attached photos into a relevant storage location.</p> 
+      <p>From these findings, we consider how email systems could better allow users to automate and customize email handling. We found that many users’ needs required information and affordances that are not currently available in email systems. From our three studies, 47%, 90%, and 40% respectively could not be expressed using common email clients today, for instance with Gmail and Outlook tools for writing filter rules. Thus, meeting those needs requires new features within email systems, such as expanding email's data model to add latent structure, as well as incorporating more context. In addition, systems need new mechanisms for users to be able to express how they want emails to be presented and processed.</p> 
+      <p>On the other hand, we also found that over half of the automation examples from the survey and the deployment of YouPS could already be implemented in today's email systems, as shown in Table&nbsp;<a class="tbl" href="#tab1">1</a>. However, some implementations are not straightforward, involving hacks that repurpose existing email features like the read/unread signal. This lack of usage coupled with workarounds using existing features suggest that email users are not satisfied with existing tools for automation in current email interfaces. We touch on future work towards designing interfaces for general purpose email automation authoring.</p> 
+      <div class="table-responsive" id="tab1"> 
+       <div class="table-caption"> 
+        <span class="table-number">Table 1:</span> 
+        <span class="table-title">Three different probes of email need-finding.</span> 
+       </div> 
+       <table class="table"> 
+        <thead> 
+         <tr> 
+          <th style="text-align:left;border-right: 2pt solid #000000;">Probe Method</th> 
+          <th style="text-align:right;"># of Participants or Scripts</th> 
+          <th>% of Needs Impossible to Express in Current Interfaces</th> 
+         </tr> 
+        </thead> 
+        <tbody> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Open-ended survey</td> 
+          <td style="text-align:right;">77</td> 
+          <td>47.1%</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Large-scale email scripts review</td> 
+          <td style="text-align:right;">499</td> 
+          <td>90.6%</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Email programming deployment</td> 
+          <td style="text-align:right;">12</td> 
+          <td>40.4%</td> 
+         </tr> 
+        </tbody> 
+        <tfoot> 
+         <tr> 
+          <td colspan="3">&nbsp;
+           <hr> </td> 
+         </tr> 
+        </tfoot> 
+       </table> 
+      </div> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-6"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">2</span></span> RELATED WORK</h2> 
+     </div> 
+    </header> 
+    <p>Email management has been explored through many different lenses by the HCI community. Some of the categories identified in our probes have been touched on by prior work.</p> 
+    <section id="sec-7"> 
+     <section id="sec-8"> 
+      <p><em> Organizing Email.</em> While there has been substantial research on email users, much of it has focused on organization and retrieval needs rather than automation needs. Email users view email as a repository for personal information management (PIM)&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0055" data-original-title="" title="" id="auto-BibPLXBIB005512">55</a>], where they have different strategies for retrieving information&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0003" data-original-title="" title="" id="auto-BibPLXBIB000313">3</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0040" data-original-title="" title="" id="auto-BibPLXBIB004014">40</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0047" data-original-title="" title="" id="auto-BibPLXBIB004715">47</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0049" data-original-title="" title="" id="auto-BibPLXBIB004916">49</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0051" data-original-title="" title="" id="auto-BibPLXBIB005117">51</a>]. For instance, users frequently send emails to themselves as a way to store information&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0010" data-original-title="" title="" id="auto-BibPLXBIB001018">10</a>]. Szóstek et al.&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0050" data-original-title="" title="" id="auto-BibPLXBIB005019">50</a>] identified six needs for information organization: email annotation, reliable structure, prioritizing emails, informative overview, flexible sorting, and efficient search. Finally, others study usage beyond PIM, including shared inboxes jointly accessed by a team&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0039" data-original-title="" title="" id="auto-BibPLXBIB003920">39</a>]. Our research builds upon this work by identifying additional needs as well as considering how systems could address such needs, given that current email clients do not fully address them.</p> 
+     </section> 
+     <section id="sec-9"> 
+      <p><em> Systems for Triaging Messages.</em> When it comes to existing automations, automatic classification is one that is widely offered in email clients. Many email clients automatically classify and prioritize emails using machine learning techniques&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0025" data-original-title="" title="" id="auto-BibPLXBIB002521">25</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0029" data-original-title="" title="" id="auto-BibPLXBIB002922">29</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0057" data-original-title="" title="" id="auto-BibPLXBIB005723">57</a>]. Beyond spam classification, clients like Gmail offer additional classifications by default such as “Social” or “Promotions”. However, users may wish to classify their emails in a different or more fine-grained manner than the default classes email clients provide. So many clients provide simple explicit rule-authoring interfaces for end-users and programmers&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0023" data-original-title="" title="" id="auto-BibPLXBIB002324">23</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0044" data-original-title="" title="" id="auto-BibPLXBIB004425">44</a>]; for example, users can specify rules for placing messages in folders.</p> 
+      <p>While most existing filter interfaces are focused on explicit metadata within messages, other ways of classification and sorting of messages have been proposed&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0015" data-original-title="" title="" id="auto-BibPLXBIB001526">15</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0042" data-original-title="" title="" id="auto-BibPLXBIB004227">42</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0050" data-original-title="" title="" id="auto-BibPLXBIB005028">50</a>]. For instance, research has found that email users tend to see messages as tasks and have a desire to conceptualize email as a task management tool&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0004" data-original-title="" title="" id="auto-BibPLXBIB000429">4</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0013" data-original-title="" title="" id="auto-BibPLXBIB001330">13</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0027" data-original-title="" title="" id="auto-BibPLXBIB002731">27</a>]. In this work, we provide empirical examples of the kinds of alternative classifications, prioritizations, and actions following from these that email users would like, in order to guide the design of future systems. We also demonstrate how desired classifications and priorities can be time-varying based on the user's state.</p> 
+     </section> 
+     <section id="sec-10"> 
+      <p><em> Automation for Recipients &amp; Senders.</em> Email users are both senders and recipients, and systems provide automation capabilities addressing both roles. For instance, email clients provide two types of reminders. Email users can set a reminder for messages to get back to it later (reminder as a recipient) and remind their recipients to solicit responses (reminder as a sender)&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0001" data-original-title="" title="" id="auto-BibPLXBIB000132">1</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0008" data-original-title="" title="" id="auto-BibPLXBIB000833">8</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0018" data-original-title="" title="" id="auto-BibPLXBIB001834">18</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0019" data-original-title="" title="" id="auto-BibPLXBIB001935">19</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0034" data-original-title="" title="" id="auto-BibPLXBIB003436">34</a>]. There are also platforms that allow users to write simple triggers and actions to integrate with different applications&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0026" data-original-title="" title="" id="auto-BibPLXBIB002637">26</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0037" data-original-title="" title="" id="auto-BibPLXBIB003738">37</a>].</p> 
+      <p>As recipients, users want to easily draft responses&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0028" data-original-title="" title="" id="auto-BibPLXBIB002839">28</a>], automatically adjust views for different email data&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0016" data-original-title="" title="" id="auto-BibPLXBIB001640">16</a>], and organize cluttered messages&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0017" data-original-title="" title="" id="auto-BibPLXBIB001741">17</a>]. Email users also want to aggregate replies to manage bulk emails&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0030" data-original-title="" title="" id="auto-BibPLXBIB003042">30</a>] and automatically process responses using pre-defined queries&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0036" data-original-title="" title="" id="auto-BibPLXBIB003643">36</a>]. Senders on the other hand would like to hint to their recipients how to respond&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0020" data-original-title="" title="" id="auto-BibPLXBIB002044">20</a>]. Borenstein et al.&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0009" data-original-title="" title="" id="auto-BibPLXBIB000945">9</a>] suggested Tcl language-enabled email to deliver executable contents (e.g., a prompt window) to recipients. In this work, we draw from and build upon this prior work to explore the general space of email automation for both email recipients and senders.</p> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-11"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">3</span></span> PROBE 1: WISHFUL THINKING</h2> 
+     </div> 
+    </header> 
+    <p>To identify common categories of desired automations that are difficult or impossible to recreate with current email inbox technology, we began by asking email users to come up with ideas for ways they would like to automate their email that they were not already doing. As open-ended articulation of needs can be challenging for users, we began with a small, in-person, formative workshop to develop initial categories of needs that then informed the structure, questions, and examples in a survey that we distributed at a larger scale. The survey aimed to determine whether the needs identified in the workshop would be reflected in a broader and more diverse population as well as gain deeper insight into user desires for automation.</p> 
+    <section id="sec-12"> 
+     <section id="sec-13"> 
+      <p><em> Formative Design Workshop.</em> We conducted a design workshop with 13 participants (10 females, 3 males). Subjects were all computer science students with knowledge of programming. We asked them to use natural language or pseudocode to write email rules that they would like to execute on their inbox as either senders or receivers of email, invoking any methods or objects that they could imagine existing. Over the course of 45 minutes, participants came up with 42 different rules. Afterwards, the authors as a group analyzed the rules that participants generated and identified five major categories of needs.</p> 
+     </section> 
+     <section id="sec-14"> 
+      <p><em> Survey.</em> Based on the needs identified from the design workshop, we designed a survey to explore each category of needs in more depth. We asked open-ended questions about how the user would like to automate their email. To prompt users to think outside the realm of what is currently possible but also be explicit in their descriptions, we told participants to imagine using a <em>smart robot</em> that can organize their email and change how it is presented to them. The questions offered rules drawn from the workshop as examples. The survey was structured into eight randomly ordered sections based on the needs identified in the workshop:</p> 
+      <ul class="list-no-style"> 
+       <li id="list1" label="•">Triaging and prioritizing incoming emails<br></li> 
+       <li id="list2" label="•">Moving incoming emails to different locations<br></li> 
+       <li id="list3" label="•">Labeling emails with richer data as sender or receiver<br></li> 
+       <li id="list4" label="•">Sending email only at a particular time or context<br></li> 
+       <li id="list5" label="•">Sending email to only the right people<br></li> 
+       <li id="list6" label="•">Different email modes that can be toggled (vacation, etc.)<br></li> 
+       <li id="list7" label="•">Altering the presentation of emails in the inbox<br></li> 
+       <li id="list8" label="•">Aggregating or processing multiple emails or email replies<br></li> 
+      </ul> 
+      <p>The survey was distributed through various mailing lists within a private university and by word of mouth. It was taken by 77 people (31 females, 41 males, 1 other, rest unanswered). The median age range was 20–29. While most of our respondents were affiliated with the university, 34.5% of our respondents were not students or faculty. In addition, 48% of respondents did not have technical backgrounds, instead working as administrative staff or as students in non-technical majors. All of our participants fall into the general category of “knowledge workers”, an important category that has been the focus of much study&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0011" data-original-title="" title="" id="auto-BibPLXBIB001146">11</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0046" data-original-title="" title="" id="auto-BibPLXBIB004647">46</a>].</p> 
+      <p>We used a grounded theory approach&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0048" data-original-title="" title="" id="auto-BibPLXBIB004848">48</a>] to identify themes in the survey answers. Two authors individually open-coded the responses, then discussed them after the fact, merging similar codes and grouping codes into distinct themes. To validate the merged codes, we selected 10 survey participants at random, and the two authors independently re-labeled each of their survey responses using the merged codes. From the 90 responses that were coded, we found an inter-rater reliability (IRR) of 79% using Cohen's <em>κ</em>.</p> 
+     </section> 
+    </section> 
+    <section id="sec-15"> 
+     <header> 
+      <div class="title-info"> 
+       <h3> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0"> </span></span> Results</h3> 
+      </div> 
+     </header> 
+     <p>We describe the main categories of needs uncovered in the workshop and the analysis of the different survey responses within each category. In the survey, we compared responses between academics and non-academics, as well as between people with and without technical backgrounds, overall finding no major differences between these groups. Thus, we present survey results across all participants.</p> 
+     <section id="sec-16"> 
+      <p><em> Richer Data Models.</em> Many of the email rules that participants devised required access to <em>latent</em> information about the message that was not explicitly given in the email headers or in attributes of each message like sender or date. From the survey, we identified the following desired latent data: progress (e.g., pending, done), deadline, topic, priority, task. Users desired <em>automatic annotation</em> of messages with these latent attributes that could be used to drive rules. For example, there were rules such as: “<tt>If the content of the message seems like it requires an action, label it as ‘pending’</tt>” and “<tt>If the email has a deadline, tag the deadline</tt>”.</p> 
+      <p>Because prioritization was a commonly articulated need in the workshop, in the survey we asked users to describe attributes that signal priority specifically. Respondents used information about the sender, assigning high priority for messages from important contacts and lowering the priority of automated or blast emails. Respondents also wanted to prioritize by the number of follow-up tasks, so a message requiring no action (e.g., an FYI) would have a lower priority. Finally, 14% of users wanted to take into account their previous interactions with a person or organization when prioritizing an email. For example, some respondents wanted to have emails marked as high priority if they had sent responses to the last several emails from the same sender and low priority if they had not opened or sent a response.</p> 
+     </section> 
+     <section id="sec-17"> 
+      <p><em> Using Internal/External Context.</em> While some attributes of an email such as deadline can be determined by examining the message in question, others require access to a broader <em>context</em>&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0002" data-original-title="" title="" id="auto-BibPLXBIB000249">2</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0053" data-original-title="" title="" id="auto-BibPLXBIB005350">53</a>] around the message. This includes both <em>internal context</em> involving other messages within the inbox of the sender or receiver generally, as well as <em>external context</em>&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0060" data-original-title="" title="" id="auto-BibPLXBIB006051">60</a>] regarding the state of the user and the world (which is often time-varying). For example, the rule “<tt>Send a message if I haven't touched base for a month</tt>” requires interaction history with the recipient of the message (internal context), as mentioned in the prior category. Another state that was often referenced was whether a recipient had replied to the original message: “<tt>If the recipient hasn't replied for n days, send them a reminder</tt>”.</p> 
+      <p>In contrast, “<tt>Don't notify emails from these campus mailing lists during my summer vacation</tt>” requires external context that involves determining whether the arrival time of an email is during a user's summer vacation. The external context may also change more frequently, for instance when one respondent said: “<em>I don't think priority is a consistent definition. For 30-40 hours per week, my research, colleagues, advisors are high on my priorities. However, outside of that time, my priorities shift around a little: my side project becomes my focus...one idea is to have these incoming messages reflect this ebb and flow of priorities.</em>” Motivated by several rules during the workshop referencing different external contexts, we asked survey participants to come up with <em>email modes</em> that could trigger different behavior in their inbox. Respondents thought of many types of modes:</p> 
+      <blockquote> 
+       <p><em>conference, work, vacation, home/family, busy, study, distraction, class, important, person, block/harassment, waiting, application, sleep, weekend, evening, summer, semester, daytime, emotion, recreation, meeting, ignore</em></p> 
+      </blockquote> 
+      <p>Each of these modes came with distinct rules for behavior. For example, a user's conference mode had a rule that highlighted only conference-related emails (e.g., meet-ups, announcements). The emotion mode came from a user who proposed having different modes that would kick in depending on their mood, such as when they felt anxious or tired.</p> 
+     </section> 
+     <section id="sec-18"> 
+      <p><em> Attention Management.</em> Many users’ needs for richer data models and context related to the end goal of <em>managing attention</em> as a recipient of email. Users described many ways to leverage these priorities to change the notification behavior or presentation of emails, including (automatically) marking them as read or unread, moving them to other less or more attended folders, hiding emails until a particular time, and bringing them to the top of the inbox or pushing them farther down. The way users repurposed interface affordances for attention management—for example, marking a read message as unread in order to make it stand out—raises the question of whether there might be other attention-getting techniques that would be a better fit.</p> 
+      <p>How to configure <em>push notifications</em> also arose frequently, reflecting that email (once an asynchronous communication medium) has taken on some attributes of more synchronous communications such as instant messaging. Users overall did not want to be notified about every email, but did want to be immediately notified about certain prioritized emails&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0035" data-original-title="" title="" id="auto-BibPLXBIB003552">35</a>]. Users considered a variety of push notification channels such as buzzing the phone and sending SMS messages. Other users came up with automatic rules to mark-as-read emails that should <em>not</em> trigger such notifications. Still others wanted to mute notifications entirely or receive digest notifications after they had accumulated for a while instead of for every email. Examples of notification rules users wrote include: </p> 
+      <ul class="list-no-style"> 
+       <li id="list9" label="•"><tt>Don't notify me about emails from these campus mailing lists during my summer vacation</tt> <br></li> 
+       <li id="list10" label="•"><tt>If this sender sends me too many emails within a short period, mute emails from the sender</tt> <br></li> 
+      </ul> 
+     </section> 
+     <section id="sec-19"> 
+      <p><em> Sender Affordances.</em> While email research generally focuses on users reducing their <em>own</em> email workload, evidence shows that users care significantly about the impact their email sending has on <em>others’</em> workloads, and seek ways to reduce that impact&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0058" data-original-title="" title="" id="auto-BibPLXBIB005853">58</a>]. Some subjects asked for a reaction or upvote feature to signal that they saw a message without burdening the recipient with another response. As another example, senders wanted to be able to set emails to expire at a certain time or when other conditions were met: “<tt>For event announcement emails, self-destruct the emails from recipients’ inbox after the event</tt>”. Context regarding a recipient's availability or responsiveness&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0052" data-original-title="" title="" id="auto-BibPLXBIB005254">52</a>] could also be used by a sender to decide when or how to send a message. Unfortunately, today, such context is often delivered to senders in a catchall fashion using auto-replies (e.g., out-of-office replies), which forces an extra message. For instance, one person wanted to send an automatic response to incoming emails if their inbox had surpassed a certain number of unread emails.</p> 
+      <p>As an additional way to reduce load on recipients, senders wanted a way to target only the right recipient <em>subset</em> of a mailing list. In particular, in the workshop there was a high demand for querying particular groups of recipients (e.g., people I have exchanged email with more than three times, people who reside in a particular city, people in my address book). These queries typically required metadata from previous emails (internal context) or even from 3rd party applications such as a calendar (external context): </p> 
+      <ul class="list-no-style"> 
+       <li id="list11" label="•"><tt>If I reply to an email thread, send my reply only to those who expressed interest</tt> <br></li> 
+       <li id="list12" label="•"><tt>Send only to people in lab right now because I need a stapler</tt> <br></li> 
+      </ul> 
+      <p>Recognizing that recipients may not always be paying attention to the group thread or mailing list, several users also wanted the <em>tagging</em> feature common in social media to signal importance to certain recipients.</p> 
+     </section> 
+     <section id="sec-20"> 
+      <p><em> Altering Inbox Presentation.</em> In addition to the existing capabilities in email clients for managing presentation, such as moving, hiding, or sorting emails, we asked survey participants to consider potential <em>new</em> presentations of their inbox&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0014" data-original-title="" title="" id="auto-BibPLXBIB001455">14</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0022" data-original-title="" title="" id="auto-BibPLXBIB002256">22</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0054" data-original-title="" title="" id="auto-BibPLXBIB005457">54</a>]. We found many interested in alternative views for email threading. Participants suggested different presentations such as a tree-like network visualization of replies per email thread, echoing prior work&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0045" data-original-title="" title="" id="auto-BibPLXBIB004558">45</a>]. Participants also wanted to break up long messages, group together short messages, or group by different attributes like sender. One participant said: “<em>In Slack, you can send individual sentences/thoughts one-by-one as you're typing a larger message, so it's easier to divide big thoughts into bite-sized chunks. I mean, who wants to send a one-line email?</em>” Connected to message segmentation, another participant said she'd like to be able to reference or quote from prior emails so that recipients could follow the source.</p> 
+     </section> 
+     <section id="sec-21"> 
+      <p><em> Content Processing and Aggregation.</em> Finally, we found many rules regarding complex processing of content within emails in order to make decisions about forwarding emails to other people&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0033" data-original-title="" title="" id="auto-BibPLXBIB003359">33</a>] or extracting information to send to other platforms or store in other formats. For instance, several subjects said that they wanted to extract event information to store within a calendar application. Other examples include: </p> 
+      <ul class="list-no-style"> 
+       <li id="list13" label="•"><tt>If I forward this email to a certain email address, parse the content and add it as a note</tt> <br></li> 
+       <li id="list14" label="•"><tt>If a message contains attachments, add them to one of my cloud folders</tt> <br></li> 
+      </ul> 
+      <p>Survey respondents additionally came up with ideas for <em>response aggregation</em>&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0030" data-original-title="" title="" id="auto-BibPLXBIB003060">30</a>]. For example, when scheduling a meeting, attendees can either respond to everyone, or to the sender, but a sender cannot collectively aggregate responses into a poll. Respondents said they would like to see a summary of a group of responses rather than a series of different emails containing all of the original responses. Also, others mentioned interest in some sort of chart, calendar, or other aggregate visualization of responses. Besides the novel presentation required, this demands a richer data model for email to <em>represent</em> the data to be aggregated.</p> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-22"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">4</span></span> PROBE 2: EXISTING AUTOMATION SOFTWARE</h2> 
+     </div> 
+    </header> 
+    <p>Our second probe aimed to identify email automation needs that (programmer) users have taken into their own hands to address. To do so, we mined Github to identify and examine code written to automate email processing. In contrast to our first probe which only called for (lightweight) wishful thinking, this probe allows us to identify needs that were important enough to actually implement. Of course, our focus on code means our user population has narrowed to programmers. Probe 1 did suggest that overall, programmers and non-programmers recognize similar needs, so seeing what programmers implemented may suggest automations of value to non-programmers. We also did find that Probe 2 revealed some needs that a non-programmer may not have or may not realize can be resolved by automation.</p> 
+    <section id="sec-23"> 
+     <section id="sec-24"> 
+      <p><em> Method.</em> On Github, we searched for code that made use of IMAP (Internet Message Access Protocol), the standard protocol for connecting to a user's mail-server account and accessing and manipulating email on it. We focused our search to code written in Python, which has a built in library called <tt>imaplib</tt>. We also included searches for two particularly popular wrapper libraries for <tt>imaplib</tt> called <tt>imappy</tt> and <tt>imapclient</tt>. To exclude the many artifacts that used IMAP simply to send application notifications, we also limited the search to repositories that included the term “email” in their <tt>README</tt> documentation.</p> 
+      <p>From an initial 524 scripts, we excluded 25 that were code-example skeletons that had not been filled in, resulting in 499 scripts. The first author went through each script using an open-coding approach as in the survey to identify the main functions performed. Eight codes emerged, with each script labeled with one or more codes. To validate our codes, a second author used the identified categories to independently re-label a random sample of 30 scripts, achieving an inter-rater reliability of 64.9% using Cohen's <em>κ</em>.</p> 
+      <div class="table-responsive" id="tab2"> 
+       <div class="table-caption"> 
+        <span class="table-number">Table 2:</span> 
+        <span class="table-title">8 major functions of email scripts on Github.</span> 
+       </div> 
+       <table class="table"> 
+        <tbody> 
+         <tr style="border-bottom: 2pt solid #000000;"> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Category</td> 
+          <td>Count</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Triggering actions based on content</td> 
+          <td>134</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Altering default presentation of email client</td> 
+          <td>118</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Archiving emails to new locations</td> 
+          <td>110</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Email as middleware</td> 
+          <td>48</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Customized notifications</td> 
+          <td>39</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Email analytics and productivity tools</td> 
+          <td>25</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Detecting and removing spam</td> 
+          <td>25</td> 
+         </tr> 
+         <tr> 
+          <td style="text-align:left;border-right: 2pt solid #000000;">Inbox cleanup and “Inbox Zero”</td> 
+          <td>23</td> 
+         </tr> 
+        </tbody> 
+        <tfoot> 
+         <tr> 
+          <td colspan="2">&nbsp;
+           <hr> </td> 
+         </tr> 
+        </tfoot> 
+       </table> 
+      </div> 
+     </section> 
+    </section> 
+    <section id="sec-25"> 
+     <header> 
+      <div class="title-info"> 
+       <h3> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0"> </span></span> Results</h3> 
+      </div> 
+     </header> 
+     <p>In Table&nbsp;<a class="tbl" href="#tab2">2</a>, we present the 8 major categories of functions and their frequency in our dataset. Some scripts performed two or more functions and so had multiple labels. While many of the scripts addressed needs that were found in the first probe, we also noticed some new categories of needs.</p> 
+     <section id="sec-26"> 
+      <p><em> Processing, organizing, and archiving content.</em> Over a fifth of the scripts triggered some sort of action (e.g., send auto-responses, mark read, move to a folder) based on information parsed from an email. The most popular example was extracting part of an email and then replying with or sending the processed content to another user. Almost equally popular were scripts that exported content from the email system. Some scripts attempted to download message contents, particularly attachments (e.g. receipts, contact info), to places such as their desktop or the cloud.</p> 
+      <p>Many of these scripts echoed the need for content processing and aggregation in Probe 1 to automate repetitive tasks. Many scripts also extracted latent structure from emails, reflecting the desire for richer data models. Overall, we found complex processing needs were prevalent, comprising around 50% of scripts. This may be because people who process large amounts of information via email were compelled to write scripts to save themselves time and effort and thus were more represented in Probe 2 than in Probe 1.</p> 
+     </section> 
+     <section id="sec-27"> 
+      <p><em> Altering the default presentation of email clients.</em> Echoing survey results on altering inbox presentation, a number of scripts focused on displaying email threads in a different way, mimicking applications like Slack or Facebook. We also found scripts with more minor tweaks to current email client presentations. For instance, there were scripts that displayed one's inbox not by email subject lines but rather by some metadata of the email content. Several scripts also aimed to personalize push notifications for new emails, similar to rules in Probe 1 regarding attention management. For example, one script interfaced with a Raspberry PI and displayed visual effects when an email arrived in the user's inbox.</p> 
+     </section> 
+     <section id="sec-28"> 
+      <p><em> Email as middleware.</em> In a divergence from the survey, we found scripts that attempted to use the inbox as <em>middleware</em>, towards performing actions outside of a user's inbox. Given the accessible and ubiquitous nature of email, some scripts enable users to use email as a form of cloud storage. Others enable users to trigger defined actions via email, such as uploading pictures to an online library, or controlling software remotely through the use of keywords. This technique is relatively technical, so it is understandable that it didn't occur to our survey respondents as a possibility. Previous studies&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0038" data-original-title="" title="" id="auto-BibPLXBIB003861">38</a>] have found similar uses, such as users using a folder to label emails that have to be printed.</p> 
+     </section> 
+     <section id="sec-29"> 
+      <p><em> Inbox cleaning and spam removal.</em> We saw a number of scripts focused on inbox cleanup to remove unimportant or spam emails. Some scripts attempted to delete unimportant messages regularly so that users could focus their attention on important messages. For instance, we encountered scripts concerned with the “Inbox Zero” approach to email management. The goal of this approach is to achieve as close to zero messages in a user's inbox at any given time. These scripts offer similar functionality to the sweep rule feature in Outlook, which runs at regular intervals to delete emails based on a user's rules.</p> 
+      <p>Some scripts were also focused on auto-removing spam emails. Unlike the survey respondents, programmers incorporated engineering techniques to automatically extract spam-related attributes of emails at a fine-grained level. Some of these scripts used machine learning libraries to train spam filters. It was unclear based on the scripts alone whether the programmers were attempting to replace current spam filter functionality in common email clients, or whether they were simply trying to implement basic machine learning models. Spam was not mentioned as frequently in Probe 1, possibly because users were satisfied with their existing spam filters.</p> 
+     </section> 
+     <section id="sec-30"> 
+      <p><em> Email analytics and productivity tools.</em> Finally, we observed instances of <em>the reflective conversation</em>&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0024" data-original-title="" title="" id="auto-BibPLXBIB002462">24</a>] when it came to tasks within emails, such as scripts that collected analytics such as response rate or frequency of recipients. The scripts provided statistics and insights to the users about how well they accomplished and completed email actions. Popular statistics like response rate were used as a measure of productivity week-to-week. This category was not mentioned as often in Probe 1, again possibly due to an over-representation of users in Probe 2 who have more intense workloads within email, or due to a correlation between programming skills and an interest in visualizing data about or optimizing one's own activities (i.e., the “quantified self”).</p> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-31"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">5</span></span> PROBE 3: FIELD DEPLOYMENT OF SIMPLE INBOX SCRIPTING</h2> 
+     </div> 
+    </header> 
+    <p>Our final probe involved having users author rules to address their needs in a real environment over time. Even for programmers, writing an email automation is a significant programming task, which will likely deter many of them from undertaking the work. Thus, to inspect how programmers might customize email handling if it were less work, we deployed an experimental email engine that aims to dramatically simplify the task of authoring email rules. In contrast to Probe 1, we can see the rules users would actually write, as well as revise, over the course of a week on real emails, as opposed to simply users’ ideas for automation.</p> 
+    <p>To facilitate this probe, we developed <strong>YouPS</strong>, a system that lets users write email processing rules in Python and executes them over their IMAP API mailboxes. YouPS provides a Python environment populated with objects representing the user's email and folders, and methods that can access and manipulate them; it implements those methods by interacting with the user's IMAP server. Table&nbsp;<a class="tbl" href="#tab3">3</a> lists some example methods of YouPS. Given the importance of context in our prior probes, we provided access to their inbox's status and interaction histories with specific contacts (internal context) and <em>modes</em> that let users indicate and leverage a variety of external contexts.</p> 
+    <div class="table-responsive" id="tab3"> 
+     <div class="table-caption"> 
+      <span class="table-number">Table 3:</span> 
+      <span class="table-title">Examples of YouPS methods.</span> 
+     </div> 
+     <table class="table"> 
+      <tbody> 
+       <tr style="border-bottom: 2pt solid #000000;"> 
+        <td style="text-align:center;border-right: 2pt solid #000000;">Method</td> 
+        <td>Description</td> 
+       </tr> 
+       <tr> 
+        <td style="text-align:center;border-right: 2pt solid #000000;"> <strong>[get, set]_mode</strong>()</td> 
+        <td>Managing email modes</td> 
+       </tr> 
+       <tr> 
+        <td style="text-align:center;border-right: 2pt solid #000000;"> <strong>get_history</strong>(contact)</td> 
+        <td>Return interaction history with the given contact</td> 
+       </tr> 
+       <tr> 
+        <td style="text-align:center;border-right: 2pt solid #000000;"><strong>get_[content, date, label, sender, subject, recipient]</strong>()</td> 
+        <td>Return metadata of the email</td> 
+       </tr> 
+      </tbody> 
+      <tfoot> 
+       <tr> 
+        <td colspan="2">&nbsp;
+         <hr> </td> 
+       </tr> 
+      </tfoot> 
+     </table> 
+    </div> 
+    <section id="sec-32"> 
+     <section id="sec-33"> 
+      <p><em> Design of YouPS.</em> YouPS provides an editor for writing so-called <em>filter</em> rules for incoming emails. Each rule is triggered only when there is a new email at the user's inbox. Users can add multiple editor tabs, each corresponding to a separate email <em>mode</em>. Users can write different rules for each mode so that their inbox behaves differently depending on the current mode. User can set their active email mode using a dropdown menu on the YouPS web interface or by calling methods to change the mode programmatically. Users can view execution logs and rule output in a console window below the editor as seen in Figure&nbsp;<a class="fig" href="#fig1">2</a>. </p>
+      <figure id="fig1"> 
+       <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig1.jpg" class="img-responsive" alt="" longdesc="In this example, the user is on her “Default” email mode. The “default mode” has two conditional statements which auto-forward event announcement emails and auto-reply to specific contacts."> 
+       <div class="figure-caption"> 
+        <span class="figure-number">Figure 1:</span> 
+        <span class="figure-title">The YouPS interface. Users can program and debug their email rules with interactive editors and a console.</span> 
+       </div> 
+      </figure> 
+      <figure id="fig2"> 
+       <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig2.jpg" class="img-responsive" alt="" longdesc="YoUPS serves as secondary email management tools so email users can keep using their current email interfaces to view and send emails."> 
+       <div class="figure-caption"> 
+        <span class="figure-number">Figure 2:</span> 
+        <span class="figure-title">YouPS accesses each user's inbox through IMAP and generates a sandbox environment to execute their rule.</span> 
+       </div> 
+      </figure> 
+      <p></p> 
+      <p>Each YouPS method prints logs when it is executed, and users can also choose to print logs using Python's native <tt>print</tt> methods. Before actually running their rules over their inbox, users can test out their rules by telling YouPS to print out all logs from a user's rules but not actually execute the action. Users can also enable and disable different email rules. If an error occurs while processing a user's rules, YouPS notifies users by sending them email and logging the error to the interface.</p> 
+     </section> 
+     <section id="sec-34"> 
+      <p><em> Deployment.</em> We recruited 12 email users (3 females, 9 males, mean age=23.5) through a university lab mailing list and word-of-mouth. Participants were undergraduate or graduate students studying fields in engineering who could program in Python. We introduced participants to YouPS and had them link their email to the system and author scripts for their inbox. Over the course of the week, they could return to the interface to edit, debug, or create new scripts. After the deployment, we had a one-on-one interview with each participant. Participants were compensated <font style="normal">$</font>35 for their time.</p> 
+     </section> 
+    </section> 
+    <section id="sec-35"> 
+     <header> 
+      <div class="title-info"> 
+       <h3> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0"> </span></span> Results</h3> 
+      </div> 
+     </header> 
+     <p>We present our analysis of rules made by participants as well as themes from the interviews, where users described their experience writing, editing, and testing email rules over time. Almost all the rules that participants wrote were comprised of chained conditionals. Participants wrote 4.8 <tt>if</tt> conditions on average per script. The conditions involved the subject line 60 times, the sender information 49 times, contents of the email 41 times, and interaction history 25 times. Actions performed on a condition included moving to a folder (40 instances), marking as read (22), labeling (6), programmatically switching a mode (6), and deleting a message (3).</p> 
+     <p>Of the YouPS rules that our users created, we found that 40.4% could not be expressed using common email clients today, while the rest were common capabilities (e.g., filtering by keyword or sender). Below is an example of a script triggered by a sender and email body that performs the action of moving to a folder. It is possible to do this using email filter tools today. </p>
+     <figure id="fig3"> 
+      <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig3.jpg" class="img-responsive" alt="" longdesc=""> 
+     </figure> 
+     <p></p> 
+     <p>However, other scripts had more complicated conditions. For instance, similar to our survey, we saw rules that performed actions only during certain time periods: </p>
+     <figure id="fig4"> 
+      <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig4.jpg" class="img-responsive" alt="" longdesc=""> 
+     </figure> 
+     <p></p> 
+     <section id="sec-36"> 
+      <p><em> Email modes.</em> During the deployment, 24 unique modes were created by the participants. One user said that he didn't use standard filters in email clients because he couldn't activate them only for particular periods. In comparison, he found YouPS email modes useful for temporarily activating rules. Another user described the modes they created in YouPS as: “<em>I have a research mode (active from 9am-5pm) and sleep mode (active from 11pm to 8am). In my research mode, I mark all emails as read and move them to the TODO label. I do this so that I don't notice my new emails right away...and I can go through the new emails in my TODO folder periodically.”</em> One participant wrote a script to programmatically change their mode to “concentration mode” after the arrival of an important email: </p>
+      <figure id="fig5"> 
+       <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig5.jpg" class="img-responsive" alt="" longdesc=""> 
+      </figure> 
+      <p></p> 
+      <p>Another user described how they could configure fine-grained filters using email modes: “<em>This [is] a way to write auto-replies that will be sent to co-workers, but not to family members, when going on vacation...Or, to snooze work-related email during the evening, but still allow family-related email...</em>”</p> 
+     </section> 
+     <section id="sec-37"> 
+      <p><em> Leveraging interaction history.</em> Echoing our survey results, users incorporated interaction history to triage emails. Prior interactions implied that the email they were receiving from a person was likely to be important. One user said: “<em>If I've talked to someone via email, then their later messages are important to me</em>”, while another said: “<em>You have different interaction periods with a person and those lead to different priorities.</em>”. Conversely, users could automatically disregard messages from certain senders if there were too many messages within a short time period: </p>
+      <figure id="fig6"> 
+       <img src="./Opportunities for Automating Email Processing_ A Need-Finding Study_files/chi2019-374-fig6.jpg" class="img-responsive" alt="" longdesc=""> 
+      </figure> 
+      <p></p> 
+     </section> 
+     <section id="sec-38"> 
+      <p><em> (Non-)use of existing email client features.</em> From interviews, we found that many users still manually process emails, even repetitive ones, despite the fact that current features within email clients can automate some of this activity. Similarly, during the deployment, more than half the rules written by participants could have been done already in their current client. We asked users why they didn't use features in their current interface. Some participants said that it was difficult to write proper rules: “<em>I'd select the option to take emails from a certain address &amp; marking them as read, but it didn't always work.</em>” This suggests that we need better ways to debug and test automations.</p> 
+      <p>One surprise from YouPS was that many of our subjects (10 out of 12) <em>preferred</em> writing rules in Python to using their mail clients’ rule-authoring interfaces. One said the reason they didn't like email interfaces for rule authoring is that they are cumbersome: “<em>Adding a new one often takes a lot of clicks and typing, even when there is an obvious pattern.</em>” In contrast, a second said “<em>(YouPS is) so much lower friction. I can copy-paste rules or even produce similar rules in a loop, and use familiar programming concepts to combine their logic or make exceptions.</em>”</p> 
+      <p>Clearly, a programming language offers more flexibility than typical interfaces, but YouPS hides the complexity of talking to an IMAP server, so it may offer an attractive sweet-spot on the simplicity versus power tradeoff; this requires further investigation.</p> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-39"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">6</span></span> DISCUSSION</h2> 
+     </div> 
+    </header> 
+    <p>Our findings demonstrate that users would like more automation in their email management. The three distinct need-finding probes we carried out consistently identified certain common categories of email needs: capturing <em>richer data models</em> and internal and (time-varying) external <em>context</em>, using them for recipients to <em>manage attention</em> and for <em>senders</em> to reduce load on recipients, and <em>automated content processing</em> to, for example, aggregate replies to an invitation or extract attached photos into a relevant storage location.</p> 
+    <section id="sec-40"> 
+     <section id="sec-41"> 
+      <p><em> Hacks that overload existing email features.</em> As a way to manage attention, we noticed users coming up with hacks that repurpose existing email functionalities. For instance, several probes saw users marking emails unread as a way to remind themselves to revisit those emails. Several scripts from Probe 2 and 3 also tried to develop customized notifications by marking incoming emails as read and moving them to different folders to suppress the default notification.</p> 
+      <p>This kind of overloading of existing features suggests that email systems could provide a richer data model for email users to manage attention. Is binary marking (e.g. marking as read/unread or starred) enough to imply different intensities of attention? Is labeling messages with priority effective given the eventual need for updates? One survey respondent said she often forgot to update her ‘todo’ labels, ending up with too many labels after a while. This suggests we need more dynamic or automated ways to mark emails, including ways to signal different and intersecting forms of priority.</p> 
+     </section> 
+     <section id="sec-42"> 
+      <p><em> Linking inboxes to other applications.</em> We repeatedly encountered a desire to leverage internal and external context. Breaking with current email clients, this requires understanding users’ inboxes beyond a single message and even further, beyond information stored within the inbox. Some of this context could be inferred rather than explicit, such as using number of unresponded emails or average response time to estimate a user's current load. However, context could also be determined explicitly, given the ability to link to other applications like calendars. As another example, some participants wanted to incorporate context such as current geolocation from their phone. This suggests that email systems should make it easier for users to leverage data from other applications when generating rules.</p> 
+      <p>We also saw a need for complex content processing and interfacing with other applications, including use of email as middleware for other activities or to archive information to other places. Existing tools for task automation&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0026" data-original-title="" title="" id="auto-BibPLXBIB002663">26</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0037" data-original-title="" title="" id="auto-BibPLXBIB003764">37</a>] demonstrate one way to make it easier for email systems to interface with other systems, though some of these features may have greater adoption if integrated into email clients themselves.</p> 
+     </section> 
+     <section id="sec-43"> 
+      <p><em> Features from other social platforms.</em> We found that email users wanted to incorporate features that are common on other social platforms. Indeed, prior work has pointed to ways that email usage, for instance within mailing lists, and social media usage, for instance on Facebook Groups, have become more similar&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0058" data-original-title="" title="" id="auto-BibPLXBIB005865">58</a>]. This suggests additional ways that email systems could be adapted to suit how people conduct online discussion today. For instance, senders said they wanted to be more aware of their recipients, such as whether they were online or busy&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0041" data-original-title="" title="" id="auto-BibPLXBIB004166">41</a>]. Users wanted more lightweight and casual ways of interacting as well as push notifications for certain content, blurring the lines between chat systems like Slack and email&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0059" data-original-title="" title="" id="auto-BibPLXBIB005967">59</a>]. Users also wanted richer data models for their contacts in order to target messages, much like the user profiles that social media sites keep today. Finally, participants mentioned wanting community Q&amp;A features like designating contacts to respond to a query, following or unfollowing threads, and the “average time to respond” metric available in tools like Piazza. They said seeing information about their own responsiveness would help increase productivity; we saw examples of this in Probe 2.</p> 
+     </section> 
+     <section id="sec-44"> 
+      <p><em> Customizing inbox presentation.</em> Email has a broad spectrum of users from various backgrounds and contexts. A fixed interface for an email client cannot meet the diverse needs of email users. We noticed a desire to customize email interfaces in all three probes. This ranged from sorting emails in other than chronological order, highlighting important emails, and hiding some emails depending on time. Probes 1 and 2 also identified more structural changes to email clients, permitting alternative ways of viewing threads or messages. Since changing the interface requires manipulating users’ email client, we need to further investigate ways to allow email users to customize their interface.</p> 
+     </section> 
+    </section> 
+   </section> 
+   <section id="sec-45"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">7</span></span> LIMITATIONS</h2> 
+     </div> 
+    </header> 
+    <p>Two of our three studies explicitly focused on programmers due to the lack of existing non-programmer tools for automating email, while the other skewed towards engineers due to our sampled population. This raises questions of external validity. However, the needs we identified did not make reference to any programming-specific topics, and were similar between programmers and non-programmers.</p> 
+    <p>So far, we have developed YouPS as a system for programmers. Its successful deployment validated our initial vocabulary of actions and data model drawn from our first probe, demonstrating that users’ desired rules were easily and concisely described using this richer vocabulary. This offers the hope that new graphical interfaces (and machine learning tools) leveraging this richer vocabulary could permit even non-programmers to create their own email automations.</p> 
+    <p>Because the questions in our survey were influenced by the design workshop, the survey responses may have been artificially steered to match the design workshop. At a minimum, however, the survey did reveal that many users shared the needs of those in the design workshop, even if we failed to identify some other needs. YouPS exposes a generic and obvious set of actions such as metadata access and email foldering; our subjects were not specifically constrained to address the same categories of needs as those found in the other studies, but they did so.</p> 
+    <p>Although our studies revealed many needs that cannot be met by current clients, we cannot conclude what numerical proportion of needs are not being met. It is possible that users primarily focused on unmet needs, artificially amplifying that portion; alternatively, it is possible that familiarity with existing capabilities led users to focus more on needs that could already be met. But regardless of the proportion, we believe we have identified a number of interesting categories of needs that are not currently addressed.</p> 
+    <p>Probe 2 identified scripts where programmers wrote code to address needs. One could therefore argue that these needs have been met by the extant code. However, of the 499 scripts, only 12 provided pre-packaged applications (e.g. browser extension or desktop application) that could be used in turnkey fashion by non-programmers. The remainder were either code libraries or scripts that other programmers would need to configure for their own environments by editing the source. It seems unlikely that exactly one person needed each script's solution, but the average number of non-author “watchers” of a project was 1.3, suggesting most of the projects are one-off and not widely used. Thus, it is still important to consider why more generally-accessible solutions do not exist, forcing programmers to write one-off scripts. YouPS aims to lower the bar for this.</p> 
+   </section> 
+   <section id="sec-46"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">8</span></span> FUTURE WORK</h2> 
+     </div> 
+    </header> 
+    <p>Our preliminary deployment of YouPS yielded evidence that our extended email vocabulary is suitable for scripting the rules users want. But we need a larger-scale deployment to gain confidence in this evidence. By deploying YouPS to more users over a larger duration, we hope to inspire participants to be more ambitious in their automations. Users’ descriptions of things they would like to do with YouPS but cannot will reveal gaps in our vocabulary and ways to fill them. As the rules written in YouPS become large and complicated, we will look for common patterns in those rules capture them in new vocabulary that makes it possible to simplify those rules. We will also seek insight from prior tools for end-user programming&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0007" data-original-title="" title="" id="auto-BibPLXBIB000768">7</a>, <a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0031" data-original-title="" title="" id="auto-BibPLXBIB003169">31</a>].</p> 
+    <p>At the same time, we aim to extend the email automation capabilities of YouPS to non-programmers by creating GUIs for expressing rules that use the broader vocabulary. For initial guidance we can look to existing email clients’ interfaces that permit non-programmers to create filters; these interfaces generally offer drop down menus of attributes and constraints that can be applied in filtering. We believe such an interface could be augmented with the new concepts identified in the work presented here. We will also consider alternatives, e.g., block programming but with support for reusing and remixing email rules&nbsp;[<a class="bib" data-trigger="hover" data-toggle="popover" data-placement="top" href="#BibPLXBIB0043" data-original-title="" title="" id="auto-BibPLXBIB004370">43</a>], in a way that is usable for non-programmers.</p> 
+   </section> 
+   <section id="sec-47"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">9</span></span> CONCLUSION</h2> 
+     </div> 
+    </header> 
+    <p>We conducted a series of need-finding probes regarding email automation. First, we led a design workshop to identify categories of email needs, followed by a larger survey to deepen our understanding of the needs we identified. We performed a second probe by mining open source code on Github to see what needs have already been enacted by programmers. Finally, we conducted a deployment of a programmable email system YouPS which enables users to write custom email rules through a simple programmatic API wrapper of IMAP, as well as a study of users’ interaction with the system over the course of a week. We found limitations in the implementation of current email clients that do not satisfy the complex desires of email users. The needs discovered in our studies will guide future designers and developers of email clients and inbox management systems.</p> 
+   </section> 
+   <section id="sec-48"> 
+    <header> 
+     <div class="title-info"> 
+      <h2> <span class="section-number"><span class="nav-open" role="button" onclick="openNav(this)" title="article navigation" tabindex="0">10</span></span> ACKNOWLEDGMENTS</h2> 
+     </div> 
+    </header> 
+    <p>We thank our participants and reviewers, particularly our shepherd for their help improving the paper's structure. Soya Park is partly supported by the Kwanjeong fellowship.</p> 
+   </section> 
+  </section> 
+  <section class="back-matter"> 
+   <section id="ref-001"> 
+    <header> 
+     <div class="title-info"> 
+      <h2 class="page-brake-head"><span class="nav-open" role="button" onclick="openNav(this)" tabindex="0" title="article navigation">REFERENCES</span></h2> 
+     </div> 
+    </header> 
+    <ul class="bibUl"> 
+     <li id="BibPLXBIB0001" label="[1]" value="1">Foundry 376. 2017. Mailspring. <a class="link-inline force-break" href="https://getmailspring.com/">https://getmailspring.com</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 1" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000132" aria-label="citation 1 reference 1">citation 1</option></select></li> 
+     <li id="BibPLXBIB0002" label="[2]" value="2">Gediminas Adomavicius and Alexander Tuzhilin. 2011. <em>Context-Aware Recommender Systems</em>. Springer US, Boston, MA, 217–253. <a class="link-inline force-break" href="https://doi.org/10.1007/978-0-387-85820-3_7" target="_blank">https://doi.org/10.1007/978-0-387-85820-3_7</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 2" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000249" aria-label="citation 1 reference 2">citation 1</option></select></li> 
+     <li id="BibPLXBIB0003" label="[3]" value="3">Tarfah Alrashed, Ahmed&nbsp;Hassan Awadallah, and Susan Dumais. 2018. The Lifetime of Email Messages: A Large-Scale Analysis of Email Revisitation. In <em>Proceedings of the 2018 Conference on Human Information Interaction&amp;Retrieval</em>(<em>CHIIR ’18</em>). ACM, New York, NY, USA, 120–129. <a class="link-inline force-break" href="https://doi.org/10.1145/3176349.3176398" target="_blank">https://doi.org/10.1145/3176349.3176398</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 3" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000313" aria-label="citation 1 reference 3">citation 1</option></select></li> 
+     <li id="BibPLXBIB0004" label="[4]" value="4">Victoria Bellotti, Nicolas Ducheneaut, Mark Howard, and Ian Smith. 2003. Taking email to task: the design and evaluation of a task management centered email tool. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’03</em>). ACM, New York, NY, USA, 345–352. <a class="link-inline force-break" href="https://doi.org/10.1145/642611.642672" target="_blank">https://doi.org/10.1145/642611.642672</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 4" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000429" aria-label="citation 1 reference 4">citation 1</option></select></li> 
+     <li id="BibPLXBIB0005" label="[5]" value="5">Frank Bentley, Nediyana Daskalova, and Nazanin Andalibi.2017. If a person is emailing you, it just doesn't make sense: Exploring Changing Consumer Behaviors in Email. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’17</em>). ACM, New York, NY, USA, 85–95. <a class="link-inline force-break" href="https://doi.org/10.1145/3025453.3025613" target="_blank">https://doi.org/10.1145/3025453.3025613</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 5" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00055" aria-label="citation 1 reference 5">citation 1</option><option value="#auto-BibPLXBIB000511" aria-label="citation 2 reference 5">citation 2</option></select></li> 
+     <li id="BibPLXBIB0006" label="[6]" value="6">Christian Bird, Alex Gourley, Prem Devanbu, Michael Gertz, and Anand Swaminathan. 2006. Mining email social networks. In <em>Proceedings of the 2006 international workshop on Mining software repositories</em>(<em>MSR ’06</em>). ACM, New York, NY, USA, 137–143. <a class="link-inline force-break" href="https://doi.org/10.1145/1137983.1138016" target="_blank">https://doi.org/10.1145/1137983.1138016</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 6" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00061" aria-label="citation 1 reference 6">citation 1</option></select></li> 
+     <li id="BibPLXBIB0007" label="[7]" value="7">Michael Bolin, Matthew Webber, Philip Rha, Tom Wilson, and Robert&nbsp;C. Miller. 2005. Automation and customization of rendered web pages. In <em>Proceedings of the 13th international conference on Intelligent user interfaces</em>(<em>IUI ’05</em>). ACM, New York, NY, USA, 163–172. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1095034.1095062">http://doi.acm.org/10.1145/1095034.1095062</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 7" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000768" aria-label="citation 1 reference 7">citation 1</option></select></li> 
+     <li id="BibPLXBIB0008" label="[8]" value="8">boomerang. 2016. boomerang. <a class="link-inline force-break" href="http://www.boomeranggmail.com/">http://www.boomeranggmail.com</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 8" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000810" aria-label="citation 1 reference 8">citation 1</option><option value="#auto-BibPLXBIB000833" aria-label="citation 2 reference 8">citation 2</option></select></li> 
+     <li id="BibPLXBIB0009" label="[9]" value="9">Nathanial&nbsp;S. Borenstein. 1992. Computational mail as network infrastructure for computer-supported cooperative work. In <em>Proceedings of the 1992 ACM conference on Computer-supported cooperative work.</em>(<em>CSCW ’92</em>). ACM, New York, NY, USA, 67–74. <a class="link-inline force-break" href="https://doi.org/10.1145/143457.143463" target="_blank">https://doi.org/10.1145/143457.143463</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 9" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB000945" aria-label="citation 1 reference 9">citation 1</option></select></li> 
+     <li id="BibPLXBIB0010" label="[10]" value="10">Horatiu Bota, Paul&nbsp;N. Bennett, Ahmed&nbsp;Hassan Awadallah, and Susan&nbsp;T. Dumais. 2017. Self-Es: the role of emails-to-self in personal information management. In <em>Proceedings of the 2017 Conference on Human Information Interaction&amp;Retrieval</em>(<em>CHIIR ’17</em>). ACM, New York, NY, USA, 205–214. <a class="link-inline force-break" href="https://doi.org/10.1145/3020165.3020189" target="_blank">https://doi.org/10.1145/3020165.3020189</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 10" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00104" aria-label="citation 1 reference 10">citation 1</option><option value="#auto-BibPLXBIB001018" aria-label="citation 2 reference 10">citation 2</option></select></li> 
+     <li id="BibPLXBIB0011" label="[11]" value="11">Mary Czerwinski, Eric Horvitz, and Susan Wilhite. 2004. A diary study of task switching and interruptions. In <em>Proceedings of the SIGCHI conference on Human factors in computing systems</em>(<em>CHI ’04</em>). ACM, New York, NY, USA, 175–182. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/985692.985715">http://doi.acm.org/10.1145/985692.985715</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 11" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001146" aria-label="citation 1 reference 11">citation 1</option></select></li> 
+     <li id="BibPLXBIB0012" label="[12]" value="12">Laura&nbsp;A. Dabbish, Robert&nbsp;E. Kraut, Susan Fussell, and Sara Kiesler. 2005. Understanding email use: predicting action on a message. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’05</em>). ACM, New York, NY, USA, 691–700. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1054972.1055068">http://doi.acm.org/10.1145/1054972.1055068</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 12" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00127" aria-label="citation 1 reference 12">citation 1</option></select></li> 
+     <li id="BibPLXBIB0013" label="[13]" value="13">Senad Dizdar. 2011. CloudHQ. <a class="link-inline force-break" href="https://linux.die.net/man/1/procmail">https://linux.die.net/man/1/procmail</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 13" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001330" aria-label="citation 1 reference 13">citation 1</option></select></li> 
+     <li id="BibPLXBIB0014" label="[14]" value="14">Marian Dork, Daniel Gruen, Carey Williamson, and Sheelagh Carpendale. 2010. A visual backchannel for large-scale events. In <em>IEEE transactions on visualization and computer graphics</em>(<em>Vis ’10</em>), Vol.&nbsp;16. IEEE, 1129–1138. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 14" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001455" aria-label="citation 1 reference 14">citation 1</option></select></li> 
+     <li id="BibPLXBIB0015" label="[15]" value="15">Mark Dredze, Tessa Lau, and Nicholas Kushmerick. 2006. Automatically classifying emails into activities. In <em>Proceedings of the 11th international conference on Intelligent user interfaces</em>(<em>IUI ’06</em>). ACM, New York, NY, USA, 70–77. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1111449.1111471">http://doi.acm.org/10.1145/1111449.1111471</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 15" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001526" aria-label="citation 1 reference 15">citation 1</option></select></li> 
+     <li id="BibPLXBIB0016" label="[16]" value="16">Mark Dredze, Bill&nbsp;N. Schilit, and Peter Norvig. 2009. Suggesting Email View Filters for Triage and Search. In <em>Proceedings of the Twenty-First International Joint Conference on Artificial Intelligence</em>(<em>IJCAI ’09</em>). AAAI, Palo Alto, CA, USA, 1414–1419. <a class="link-inline force-break" href="https://www.aaai.org/ocs/index.php/IJCAI/IJCAI-09/paper/viewFile/488/909">https://www.aaai.org/ocs/index.php/IJCAI/IJCAI-09/paper/viewFile/488/909</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 16" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001640" aria-label="citation 1 reference 16">citation 1</option></select></li> 
+     <li id="BibPLXBIB0017" label="[17]" value="17">Mark Dredze, Hanna&nbsp;M. Wallach, Danny Puller, and Fernando Pereira. 2008. Automatically classifying emails into activities. In <em>Proceedings of the 13th international conference on Intelligent user interfaces</em>(<em>IUI ’08</em>). ACM, New York, NY, USA, 199–206. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1378773.1378800">http://doi.acm.org/10.1145/1378773.1378800</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 17" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001741" aria-label="citation 1 reference 17">citation 1</option></select></li> 
+     <li id="BibPLXBIB0018" label="[18]" value="18">Mozilla Foundation. 2004. Mozilla Thunderbird. <a class="link-inline force-break" href="https://www.thunderbird.net/">https://www.thunderbird.net/</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 18" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001834" aria-label="citation 1 reference 18">citation 1</option></select></li> 
+     <li id="BibPLXBIB0019" label="[19]" value="19">Google. 2014. Google Inbox. <a class="link-inline force-break" href="https://inbox.google.com/">https://inbox.google.com/</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 19" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB001935" aria-label="citation 1 reference 19">citation 1</option></select></li> 
+     <li id="BibPLXBIB0020" label="[20]" value="20">Sukeshini&nbsp;A. Grandhi and Lyndsey&nbsp;K. Lanagan-Leitzel. 2016. To Reply or To Reply All: Understanding Replying Behavior in Group Email Communication. In <em>Proceedings of the 2016 ACM conference on Computer-supported cooperative work.</em>(<em>CSCW ’16</em>). ACM, New York, NY, USA, 560–569. <a class="link-inline force-break" href="https://doi.org/10.1145/2818048.2819981" target="_blank">https://doi.org/10.1145/2818048.2819981</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 20" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002044" aria-label="citation 1 reference 20">citation 1</option></select></li> 
+     <li id="BibPLXBIB0021" label="[21]" value="21">Catherine Grevet, David Choi, Debra Kumar, and Eric Gilbert. 2014. Overload is overloaded: email in the age of Gmail. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’14</em>). 793–802. <a class="link-inline force-break" href="https://doi.org/10.1145/2556288.2557013" target="_blank">https://doi.org/10.1145/2556288.2557013</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 21" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00218" aria-label="citation 1 reference 21">citation 1</option></select></li> 
+     <li id="BibPLXBIB0022" label="[22]" value="22">Daniel Gruen, Steven&nbsp;L. Rohall, Suzanne Minassian, Bernard Kerr, Paul Moody, Bob Stachel, Martin Wattenberg, and Eric Wilcox. 2004. Lessons from the reMail prototypes. In <em>Proceedings of the 2004 ACM conference on Computer supported cooperative work</em>(<em>CSCW ’04</em>). ACM, New York, NY, USA, 152–161. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1031607.1031634">http://doi.acm.org/10.1145/1031607.1031634</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 22" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002256" aria-label="citation 1 reference 22">citation 1</option></select></li> 
+     <li id="BibPLXBIB0023" label="[23]" value="23">Philip&nbsp;A. Guenther. 1990. procmail. <a class="link-inline force-break" href="https://linux.die.net/man/1/procmail">https://linux.die.net/man/1/procmail</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 23" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002324" aria-label="citation 1 reference 23">citation 1</option></select></li> 
+     <li id="BibPLXBIB0024" label="[24]" value="24">William&nbsp;C. Hill, James&nbsp;D. Hollan, Dave Wroblewski, and Tim McCandless. 1992. Edit wear and read wear. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’92</em>). ACM, New York, NY, USA, 3–9. <a class="link-inline force-break" href="https://doi.org/10.1145/142750.142751" target="_blank">https://doi.org/10.1145/142750.142751</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 24" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002462" aria-label="citation 1 reference 24">citation 1</option></select></li> 
+     <li id="BibPLXBIB0025" label="[25]" value="25">Edward Hung. 2001. Deduction of Procmail Recipes from Classified Emails. <em><em>CMSC724 Database Management Systems, individual research project report</em></em> (2001). <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 25" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002521" aria-label="citation 1 reference 25">citation 1</option></select></li> 
+     <li id="BibPLXBIB0026" label="[26]" value="26">IFTTT. 2010. IFTTT Gmail. <a class="link-inline force-break" href="https://ifttt.com/gmail">https://ifttt.com/gmail</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 26" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002637" aria-label="citation 1 reference 26">citation 1</option><option value="#auto-BibPLXBIB002663" aria-label="citation 2 reference 26">citation 2</option></select></li> 
+     <li id="BibPLXBIB0027" label="[27]" value="27">GrexIt Inc.2011. hiver. <a class="link-inline force-break" href="https://hiverhq.com/">https://hiverhq.com</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 27" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002731" aria-label="citation 1 reference 27">citation 1</option></select></li> 
+     <li id="BibPLXBIB0028" label="[28]" value="28">Anjuli Kannan, Karol Kurach, Sujith Ravi, Tobias Kaufmann, Andrew Tomkins, Balint Miklos, Greg Corrado, Laszlo Lukacs, Marina Ganea, Peter Young, <em>et al.</em> 2016. Smart reply: Automated response suggestion for email. In <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>(<em>KDD ’16</em>). ACM, New York, NY, USA, 955–964. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 28" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002839" aria-label="citation 1 reference 28">citation 1</option></select></li> 
+     <li id="BibPLXBIB0029" label="[29]" value="29">Shih-Wen Ke, Chris Bowerman, and Michael Oakes. 2006. Perc: A personal email classifier. <em><em>European Conference on Information Retrieval</em></em> (2006), 460–463. <a class="link-inline force-break" href="https://doi.org/10.1007/11735106_41" target="_blank">https://doi.org/10.1007/11735106_41</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 29" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB002922" aria-label="citation 1 reference 29">citation 1</option></select></li> 
+     <li id="BibPLXBIB0030" label="[30]" value="30">Nicolas Kokkalis, Johannes&nbsp;Roith Chengdiao&nbsp;Fan, Michael&nbsp;S. Bernstein, and Scott Klemmer. 2017. MyriadHub: Efficiently Scaling Personalized Email Conversations with Valet Crowdsourcing. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’17</em>). ACM, New York, NY, USA, 73–84. <a class="link-inline force-break" href="https://doi.org/10.1145/3025453.3025954" target="_blank">https://doi.org/10.1145/3025453.3025954</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 30" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003042" aria-label="citation 1 reference 30">citation 1</option><option value="#auto-BibPLXBIB003060" aria-label="citation 2 reference 30">citation 2</option></select></li> 
+     <li id="BibPLXBIB0031" label="[31]" value="31">Gilly Leshed, Eben&nbsp;M. Haber, Tara Matthews, and Tessa Lau. 2008. CoScripter: automating &amp; sharing how-to knowledge in the enterprise. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’08</em>). ACM, New York, NY, USA, 1719–1728. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/1357054.1357323">http://doi.acm.org/10.1145/1357054.1357323</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 31" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003169" aria-label="citation 1 reference 31">citation 1</option></select></li> 
+     <li id="BibPLXBIB0032" label="[32]" value="32">Wendy&nbsp;E Mackay. 1998. More than just a communication system: diversity in the use of electronic mail. In <em>Proceedings of the 1998 ACM conference on Computer supported cooperative work</em>(<em>CSCW ’98</em>). ACM, New York, NY, USA, 344–353. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/62266.62293">http://doi.acm.org/10.1145/62266.62293</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 32" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00322" aria-label="citation 1 reference 32">citation 1</option></select></li> 
+     <li id="BibPLXBIB0033" label="[33]" value="33">Kaitlin Mahar, Amy&nbsp;X Zhang, and David Karger. 2018. Squadbox: A Tool to Combat Email Harassment Using Friendsourced Moderation. In <em>Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems</em>. ACM, 586–599. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 33" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003359" aria-label="citation 1 reference 33">citation 1</option></select></li> 
+     <li id="BibPLXBIB0034" label="[34]" value="34">Mailbird. 2013. Mailbird. <a class="link-inline force-break" href="https://www.getmailbird.com/">https://www.getmailbird.com</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 34" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003436" aria-label="citation 1 reference 34">citation 1</option></select></li> 
+     <li id="BibPLXBIB0035" label="[35]" value="35">Gloria Mark, Shamsi&nbsp;T. Iqbal, Mary Czerwinski, Paul Johns, Akane Sano, and Yuliya Lutchyn. 2016. Email duration, batching and self-interruption: Patterns of email use on productivity and stress. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’16</em>). ACM, New York, NY, USA, 1717–1728. <a class="link-inline force-break" href="https://doi.org/10.1145/2858036.2858262" target="_blank">https://doi.org/10.1145/2858036.2858262</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 35" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003552" aria-label="citation 1 reference 35">citation 1</option></select></li> 
+     <li id="BibPLXBIB0036" label="[36]" value="36">Luke McDowell, Oren Etzioni, Alon Halevy, and Henry Levy. 2004. Semantic email. In <em>Proceedings of the 13th international conference on World Wide Web</em>(<em>WWW ’04</em>). ACM, New York, NY, USA, 244–254. <a class="link-inline force-break" href="https://doi.org/10.1145/988672.988706" target="_blank">https://doi.org/10.1145/988672.988706</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 36" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003643" aria-label="citation 1 reference 36">citation 1</option></select></li> 
+     <li id="BibPLXBIB0037" label="[37]" value="37">Microsoft. 2018. Microsoft Flow. <a class="link-inline force-break" href="https://flow.microsoft.com/en-us/">https://flow.microsoft.com/en-us/</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 37" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003738" aria-label="citation 1 reference 37">citation 1</option><option value="#auto-BibPLXBIB003764" aria-label="citation 2 reference 37">citation 2</option></select></li> 
+     <li id="BibPLXBIB0038" label="[38]" value="38">Michael Muller and Daniel Gruen. 2002. Collaborating within not through email: Users reinvent a familiar technology. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 38" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003861" aria-label="citation 1 reference 38">citation 1</option></select></li> 
+     <li id="BibPLXBIB0039" label="[39]" value="39">Michael&nbsp;J. Muller and Daniel&nbsp;M. Gruen. 2005. Working together inside an emailbox. In <em>Proceedings ECSCW 2005</em>(<em>ECSCW ’05</em>). Springer, Dordrecht, 103–122. <a class="link-inline force-break" href="https://doi.org/10.1007/1-4020-4023-7_6" target="_blank">https://doi.org/10.1007/1-4020-4023-7_6</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 39" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB003920" aria-label="citation 1 reference 39">citation 1</option></select></li> 
+     <li id="BibPLXBIB0040" label="[40]" value="40">Kanika Narang, Susan&nbsp;T. Dumais, Nick Craswell, Dan Liebling, and Qingyao Ai. 2017. Large-scale analysis of email search and organizational strategies. In <em>Proceedings of the 2017 Conference on Human Information Interaction&amp;Retrieval</em>(<em>CHIIR ’17</em>). ACM, New York, NY, USA, 215–223. <a class="link-inline force-break" href="https://doi.org/10.1145/3020165.3020175" target="_blank">https://doi.org/10.1145/3020165.3020175</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 40" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004014" aria-label="citation 1 reference 40">citation 1</option></select></li> 
+     <li id="BibPLXBIB0041" label="[41]" value="41">Bonnie&nbsp;A. Nardi, Steve Whittaker, and Erin Bradner. 2000. Interaction and Outeraction: Instant Messaging in Action. In <em>Proceedings of the 2000 ACM conference on Computer supported cooperative work</em>(<em>CSCW ’00</em>). ACM, New York, NY, USA, 79–88. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/358916.358975">http://doi.acm.org/10.1145/358916.358975</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 41" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004166" aria-label="citation 1 reference 41">citation 1</option></select></li> 
+     <li id="BibPLXBIB0042" label="[42]" value="42">Carman Neustaedter, A J.&nbsp;Bernheim&nbsp;Brush, Marc Smith, and Danyel Fisher. 2005. The Social Network and Relationship Finder: Social Sorting for Email Triage.<em><em>Proceedings of the 2005 Conference on Email and Anti-Spam (CEAS)</em></em>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 42" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004227" aria-label="citation 1 reference 42">citation 1</option></select></li> 
+     <li id="BibPLXBIB0043" label="[43]" value="43">Stephen Oney, Brad Myers, and Joel Brandt.2014. InterState: a language and environment for expressing interface behavior. In <em>Proceedings of the 30th Annual ACM Symposium on User Interface Software and Technology</em>(<em>UIST ’14</em>). ACM, New York, NY, USA, 263–272. <a class="link-inline force-break" href="https://doi.org/10.1145/2642918.2647358" target="_blank">https://doi.org/10.1145/2642918.2647358</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 43" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004370" aria-label="citation 1 reference 43">citation 1</option></select></li> 
+     <li id="BibPLXBIB0044" label="[44]" value="44">CMU&nbsp;Cyrus Project. 2008. sieve. <a class="link-inline force-break" href="http://sieve.info/">http://sieve.info</a>. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 44" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004425" aria-label="citation 1 reference 44">citation 1</option></select></li> 
+     <li id="BibPLXBIB0045" label="[45]" value="45">Steven&nbsp;L. Rohall, Daniel Gruen, Paul Moody, and Seymour Kellerman. 2001. Email visualizations to aid communications. In <em>Proceedings of InfoVis 2001 The IEEE Symposium on Information Visualization</em>(<em>InfoVis ’01</em>). IEEE, 15. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 45" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004558" aria-label="citation 1 reference 45">citation 1</option></select></li> 
+     <li id="BibPLXBIB0046" label="[46]" value="46">Abigail&nbsp;J Sellen, Rachel Murphy, and Kate&nbsp;L Shaw. 2002. How knowledge workers use the web. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing System</em>(<em>CHI ’02</em>). ACM, New York, NY, USA, 227–234. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/503376.503418">http://doi.acm.org/10.1145/503376.503418</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 46" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004647" aria-label="citation 1 reference 46">citation 1</option></select></li> 
+     <li id="BibPLXBIB0047" label="[47]" value="47">Nikash Singh, Martin Tomitsch, and Mary&nbsp;Lou Maher. 2006. Understanding the management and need for awareness of temporal information in email. In <em>Proceedings of the 2006 international workshop on Mining software repositories</em>(<em>MSR ’06</em>). ACM, New York, NY, USA, 137–143. <a class="link-inline force-break" href="https://doi.org/10.1145/1137983.1138016" target="_blank">https://doi.org/10.1145/1137983.1138016</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 47" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004715" aria-label="citation 1 reference 47">citation 1</option></select></li> 
+     <li id="BibPLXBIB0048" label="[48]" value="48">Anselm Strauss and Juliet&nbsp;M Corbin. 1990. <em>Basics of qualitative research: Grounded theory procedures and techniques.</em>Sage Publications, Inc. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 48" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004848" aria-label="citation 1 reference 48">citation 1</option></select></li> 
+     <li id="BibPLXBIB0049" label="[49]" value="49">Saiganesh Swaminathan, Raymond Fok, Fanglin Chen, Ting-Hao&nbsp;Kenneth Huang, Irene Lin, Rohan Jadvani, Walter&nbsp;S. Lasecki, and Jeffrey&nbsp;P. Bigham.2017. WearMail: On-the-Go Access to Information in Your Email with a Privacy-Preserving Human Computation Workflow. In <em>Proceedings of the 30th Annual ACM Symposium on User Interface Software and Technology</em>(<em>UIST ’17</em>). ACM, New York, NY, USA, 807–815. <a class="link-inline force-break" href="https://doi.org/10.1145/3126594.3126603" target="_blank">https://doi.org/10.1145/3126594.3126603</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 49" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB004916" aria-label="citation 1 reference 49">citation 1</option></select></li> 
+     <li id="BibPLXBIB0050" label="[50]" value="50">Agnieszka&nbsp;Matysiak Szóstek. 2011. ’Dealing with My Emails’: Latent user needs in email management. <em><em>Computers in Human Behavior</em></em> 27, 2 (2011), 723–729. <a class="link-inline force-break" href="https://doi.org/10.1016/j.chb.2010.09.019" target="_blank">https://doi.org/10.1016/j.chb.2010.09.019</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 50" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005019" aria-label="citation 1 reference 50">citation 1</option><option value="#auto-BibPLXBIB005028" aria-label="citation 2 reference 50">citation 2</option></select></li> 
+     <li id="BibPLXBIB0051" label="[51]" value="51">Jaime Teevan, Christine Alvarado, Mark&nbsp;S. Ackerman, and David&nbsp;R. Karger. 2004. The perfect search engine is not enough: a study of orienteering behavior in directed search. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’04</em>). ACM, New York, NY, USA, 415–422. <a class="link-inline force-break" href="https://doi.org/10.1145/985692.985745" target="_blank">https://doi.org/10.1145/985692.985745</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 51" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005117" aria-label="citation 1 reference 51">citation 1</option></select></li> 
+     <li id="BibPLXBIB0052" label="[52]" value="52">Joshua&nbsp;R Tyler and John&nbsp;C Tang. 2003. When can I expect an email response? A study of rhythms in email usage. In <em>ECSCW 2003</em>. Springer, 239–258. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 52" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005254" aria-label="citation 1 reference 52">citation 1</option></select></li> 
+     <li id="BibPLXBIB0053" label="[53]" value="53">Stephen Voida, Elizabeth&nbsp;D. Mynatt, Blair MacIntyre, and Gregory&nbsp;M. Corso. 2002. Integrating virtual and physical context to support knowledge workers. <em><em>IEEE Pervasive Computing</em></em> 1 (2002), 73–79. <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 53" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005350" aria-label="citation 1 reference 53">citation 1</option></select></li> 
+     <li id="BibPLXBIB0054" label="[54]" value="54">Martin Wattenberg, Steven&nbsp;L. Rohall, Daniel Gruen, and Bernard Kerr. 2005. E-mail research: Targeting the enterprise. <em><em>Human-Computer Interaction</em></em> 20, 2 (2005), 139–162. <a class="link-inline force-break" href="https://doi.org/10.1207/s15327051hci20012_5">https://doi.org/10.1207/s15327051hci20012_5</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 54" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005457" aria-label="citation 1 reference 54">citation 1</option></select></li> 
+     <li id="BibPLXBIB0055" label="[55]" value="55">Steve Whittaker, Victoria Bellotti, and Jacek Gwizdka. 2006. Email in personal information management. <em><em>Commun. ACM</em></em> 49, 1 (2006), 68–73. <a class="link-inline force-break" href="https://doi.org/10.1145/1107458.1107494" target="_blank">https://doi.org/10.1145/1107458.1107494</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 55" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005512" aria-label="citation 1 reference 55">citation 1</option></select></li> 
+     <li id="BibPLXBIB0056" label="[56]" value="56">Steve Whittaker and Candace Sidner. 1996. Email overload: exploring personal information management of email. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>. 793–802. <a class="link-inline force-break" href="https://doi.org/10.1145/238386.238530" target="_blank">https://doi.org/10.1145/238386.238530</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 56" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00566" aria-label="citation 1 reference 56">citation 1</option><option value="#auto-BibPLXBIB00569" aria-label="citation 2 reference 56">citation 2</option></select></li> 
+     <li id="BibPLXBIB0057" label="[57]" value="57">Shinjae Yoo, Yiming Yang, and Jaime Carbonell. 2011. Modeling personalized email prioritization: classification-based and regression-based approaches. In <em>Proceedings of the 20th ACM international conference on Information and knowledge management</em>(<em>CIKM ’11</em>). ACM, New York, NY, USA, 729–738. <a class="link-inline force-break" href="https://doi.org/10.1145/2063576.2063683" target="_blank">https://doi.org/10.1145/2063576.2063683</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 57" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005723" aria-label="citation 1 reference 57">citation 1</option></select></li> 
+     <li id="BibPLXBIB0058" label="[58]" value="58">Amy&nbsp;X. Zhang, Mark&nbsp;S. Ackerman, and David&nbsp;R. Karger.2015. Mailing Lists: Why Are They Still Here, What's Wrong With Them, and How Can We Fix Them?. In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>(<em>CHI ’15</em>). ACM, New York, NY, USA, 4009–4018. <a class="link-inline force-break" href="https://doi.org/10.1145/2702123.2702194" target="_blank">https://doi.org/10.1145/2702123.2702194</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 58" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB00583" aria-label="citation 1 reference 58">citation 1</option><option value="#auto-BibPLXBIB005853" aria-label="citation 2 reference 58">citation 2</option><option value="#auto-BibPLXBIB005865" aria-label="citation 3 reference 58">citation 3</option></select></li> 
+     <li id="BibPLXBIB0059" label="[59]" value="59">Amy&nbsp;X. Zhang and Justin Cranshaw. 2018. Making Sense of Group Chat Through Collaborative Tagging and Summarization. In <em>Proceedings of the 2018 ACM conference on Computer supported cooperative work</em>(<em>CSCW ’18</em>). ACM, New York, NY, USA, 196–223. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/3274465">http://doi.acm.org/10.1145/3274465</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 59" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB005967" aria-label="citation 1 reference 59">citation 1</option></select></li> 
+     <li id="BibPLXBIB0060" label="[60]" value="60">Qian Zhao, Paul Bennett, Adam Fourney, Anne&nbsp;Loomis Thompson, Shane Williams, Adam&nbsp;D. Troy, and Susan Dumais. 2018. Calendar-Aware Proactive Email Recommendation. In <em>Proceedings of the 41st Annual International ACM SIGIR Conference on Research and Development in Information Retrieval</em>(<em>SIGIR ’18</em>). ACM, New York, NY, USA, 655–664. <a class="link-inline force-break" href="http://doi.acm.org/10.1145/3209978.3210001">http://doi.acm.org/10.1145/3209978.3210001</a> <span class="link-das"> </span><select class="bib-ref-num" aria-label="Jump to citation for reference 60" style="display:inline-block;"><option>Navigate to</option><option value="#auto-BibPLXBIB006051" aria-label="citation 1 reference 60">citation 1</option></select></li> 
+    </ul> 
+   </section> 
+  </section> 
+  <section id="foot-001" class="footnote"> 
+   <div class="bibStrip"> 
+    <p>Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from <a href="mailto:permissions@acm.org">permissions@acm.org</a>.</p> 
+    <p><em>CHI '19, May 04–09, 2019, Glasgow, Scotland UK</em></p> 
+    <p>© 2019 Association for Computing Machinery.<br> ACM ISBN 978-1-4503-5970-2/19/05…$15.00.<br>DOI: <a class="link-inline force-break" target="_blank" href="https://doi.org/10.1145/3290605.3300604">https://doi.org/10.1145/3290605.3300604</a> </p> 
+   </div> 
+  </section>   
+      </main>
+      </div></div>
+  <script>
+
+    let COLLECTION_NAME = window.location.pathname.split("ocean/").slice(-1)[0].split("/")[0];
+    console.log(COLLECTION_NAME);
+  </script>
+  <script src="../ocean-lib/app.js"></script>
+  <script src="../ocean-lib/contextmenu.js" type="text/javascript"></script>
+</body>
+
+</html>

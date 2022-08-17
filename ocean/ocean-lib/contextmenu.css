@@ -1,0 +1,130 @@
+﻿/* Context menu */
+.context-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 200px;
+    background: white;
+    box-shadow: 10px 10px 5px #888888;
+    z-index: 9;
+    background: #9C978B;
+}
+
+    .context-menu ul {
+        list-style: none;
+        padding: 2px;
+    }
+
+        .context-menu ul li {
+            padding: 5px 2px;
+            margin-bottom: 3px;
+            color: #004242;
+            background-color: #9C978B;
+            
+        }
+
+            .context-menu ul li.selected {
+                background-color: white;
+                font-weight: bold;
+            }
+
+            .context-menu ul li:hover {
+                cursor: pointer;
+                background-color: #7fffd4;
+            }
+
+    .context-menu select {
+        width:200px;
+    }
+
+    @-webkit-keyframes glow {
+        0% {
+            -webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+            border-color: rgba(0,0,255,0.5);
+        }
+        100% {
+            -webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+            border-color: rgba(0,0,255,1.0);
+        }
+    }
+
+@-moz-keyframes glow {
+    0% {
+        -moz-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+        border-color: rgba(0,0,255,0.5);
+    }
+    100% {
+        -moz-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+        border-color: rgba(0,0,255,1.0);
+    }
+}
+@-o-keyframes glow {
+    0% {
+        box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+        border-color: rgba(0,0,255,0.5);
+    }
+    100% {
+        box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+        border-color: rgba(0,0,255,1.0);
+    }
+}
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+        border-color: rgba(0,0,255,0.5);
+    }
+    100% {
+        box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+        border-color: rgba(0,0,255,1.0);
+    }
+}
+
+
+.glow{
+    background-color:#cce;
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-timing-function: ease-in-out;
+    
+    -moz-animation-name: glow;
+    -moz-animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    -moz-animation-timing-function: ease-in-out;
+    
+    -o-animation-name: glow;
+    -o-animation-duration: 1s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: alternate;
+    -o-animation-timing-function: ease-in-out;
+    
+    animation-name: glow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+/* Colors */
+.Gainsboro, .Orange, .Plum {
+    width: 15px;
+    height: 15px;
+    border: 0px solid black;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.Gainsboro {
+    background-color: Gainsboro;
+}
+
+.Orange {
+    background-color: Orange;
+}
+
+.Plum {
+    background-color: Plum;
+}
