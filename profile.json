@@ -49,6 +49,10 @@
 				{
 					"name": "pdf",
 					"link": "https://arxiv.org/pdf/2101.06098v1.pdf"
+				},
+				{
+					"name": "acm dl",
+					"link": "https://dl.acm.org/doi/10.1145/3449205"
 				}
 			],
 			"author": [
@@ -92,6 +96,10 @@
 				{
 					"name": "acm dl",
 					"link": "https://dl.acm.org/doi/10.1145/3397481.3450637"
+				},
+				{
+					"name": "invited talk",
+					"link": "papers/Dash-ziva.pdf"
 				}
 			],
 			"author": [
