@@ -812,13 +812,34 @@ let cxt_menu_tgt = "#outer-container";
       .then(() => {
         // Signed in..
         console.log("signed in");
-        // var db = firebase.firestore();
+        
+        // listen to add event from db
+        db.collection(COLLECTION_NAME)
+        .onSnapshot((doc) => {
+            // if(!init) {
+            //     debugger;
+            //     init = !init;
 
-
-        // // Init the storage plugin
-        // recogito.FirebaseStorage(r, firebaseConfig, settings);
-
-
+            //     return; 
+            // }
+            if(!doc.docChanges) return;
+            doc.docChanges().forEach(function(change) {
+                if (change.type === "added") {
+                    // change.doc here is new a new document added by me
+                    // if it is grey, don't add it to the other clients' end
+                    if((change.doc.data().body[0].author != session_id) && (change.doc.data().body[0].purpose == "bridge"))
+                        r.addAnnotation(change.doc.data());
+                } else if (change.type === "removed") {
+                    // change.doc here is new a new document removed by me
+                    if(r.getAnnotations().length != doc.docChanges().length)
+                        r.removeAnnotation(change.doc.data());
+                } else {
+                // updated
+                if((change.doc.data().body[0].author != session_id) && (change.doc.data().body[0].purpose == "bridge"))
+                    r.addAnnotation(change.doc.data());
+                }
+            });
+        });
 
 
       })
@@ -868,33 +889,7 @@ let cxt_menu_tgt = "#outer-container";
     });
    
 
-    // listen to add event from db
-    db.collection(COLLECTION_NAME)
-    .onSnapshot((doc) => {
-        // if(!init) {
-        //     debugger;
-        //     init = !init;
-
-        //     return; 
-        // }
-        if(!doc.docChanges) return;
-        doc.docChanges().forEach(function(change) {
-            if (change.type === "added") {
-                // change.doc here is new a new document added by me
-                // if it is grey, don't add it to the other clients' end
-                if((change.doc.data().body[0].author != session_id) && (change.doc.data().body[0].purpose == "bridge"))
-                    r.addAnnotation(change.doc.data());
-            } else if (change.type === "removed") {
-                // change.doc here is new a new document removed by me
-                if(r.getAnnotations().length != doc.docChanges().length)
-                    r.removeAnnotation(change.doc.data());
-            } else {
-            // updated
-            if((change.doc.data().body[0].author != session_id) && (change.doc.data().body[0].purpose == "bridge"))
-                r.addAnnotation(change.doc.data());
-            }
-        });
-    });
+    
 
     r.on('createAnnotation', function (a) {
         // alert('created'); 
