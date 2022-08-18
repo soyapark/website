@@ -44,6 +44,41 @@
 	],
 	"paper": [
 		{
+			"title": "Exploring Team-Sourced Hyperlinks to Address Navigation Challenges for Low-Vision Readers of Scientific Papers",
+			"link": [
+				{
+					"name": "website",
+					"link": "https://people.csail.mit.edu/soya/ocean/"
+				}
+			],
+			"author": [
+				{
+					"name": "Soya Park",
+					"link":	""
+				},
+				{
+					"name": "Jonathan Bragg",
+					"link":	""
+				},
+				{
+					"name": "Michael Chang",
+					"link":	""
+				},
+				{
+					"name": "Kevin Larson",
+					"link":	""
+				},
+				{
+					"name": "Danielle Bragg",
+					"link":	""
+				}
+			],
+			"conference": "CSCW '22 (to appear)",
+			"talk": [
+			],
+			"press": []
+		},
+		{
 			"title": "How AI Developers Overcome Communication Challenges in a Multidisciplinary Team: A Case Study",
 			"link": [
 				{
@@ -81,7 +116,7 @@
 					"link":	""
 				}
 			],
-			"conference": "CSCW '21 (to appear)",
+			"conference": "CSCW '21",
 			"talk": [
 			],
 			"press": []
