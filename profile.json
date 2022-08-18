@@ -125,6 +125,10 @@
 			"title": "Facilitating knowledge sharing from domain experts to data scientists for building NLP models",
 			"link": [
 				{
+					"name": "Ocean",
+					"link": "https://people.csail.mit.edu/soya/ocean/ziva/?user=guest"
+				},
+				{
 					"name": "pdf",
 					"link": "https://arxiv.org/pdf/2102.00036v1.pdf"
 				},
@@ -176,6 +180,10 @@
 		{
 			"title": "Opportunities for Automating Email Processing: A Need-Finding Study",
 			"link": [
+				{
+					"name": "Ocean",
+					"link": "https://people.csail.mit.edu/soya/ocean/youps/?user=guest"
+				},
 				{
 					"name": "pdf",
 					"link": "papers/mailbot.pdf"
